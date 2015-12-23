@@ -1,6 +1,7 @@
 'use strict';
+import Model from '../src/Model';
 
-let User = [
+let User = Model.new([
   {param: 'id', description: '...', example: 'ae3432aeb35563245'},
   {param: 'name', description: '...', example: 'Jane Doe'},
   {
@@ -13,7 +14,7 @@ let User = [
   },
   {param: 'username', description: '...', example: 'janedoe'},
   {param: 'password', description: '...', example: 'testtest'},
-];
+]);
 
 let unauthorizedError = {
   name: 'Unauthorized Error',
@@ -48,14 +49,14 @@ let createUser = {
   group: 'User',
   description: 'Allows someone to create a user.',
   params: {
-    body: User.params(['name', 'email', 'username', 'password']),
+    body: User.select(['name', 'email', 'username', 'password']).asArray(),
   },
   responses: [
     {
       name: 'Success',
       status: 200,
       body: {
-        user: User.params(['id','name', 'email', 'username']),
+        user: User.select(['id','name', 'email', 'username']).asObject(),
       },
     },
     unauthorizedError,
@@ -68,7 +69,7 @@ let getUser = {
   method: 'GET',
   group: 'User',
   params: {
-    url: User.params(['id']),
+    url: User.select(['id']).asArray(),
     query: [],
   },
   headers: [ tokenHeader ],
