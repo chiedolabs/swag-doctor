@@ -1,32 +1,10 @@
 'use strict';
-import * as _ from 'lodash';
-
-class Convertible {
-  /**
-   * @param {Array} params
-   * @returns {void}
-   */
-  constructor(params) {
-    this.params = params;
-
-    this.asArray = this.asArray.bind(this);
-    this.asObject = this.asObject.bind(this);
-  }
-
-  asArray (){
-    return this.params;
-  }
-
-  asObject(){
-    // This should actually do the conversion from the array to an object.
-    return {
-      'bar': 'foo',
-      'bar': 'foo',
-    };
-  }
-}
 
 module.exports = class Model {
+  /*
+   * @param {Object} params
+   * @returns {void}
+   */
   constructor(params) {
     this.params = params;
 
@@ -39,15 +17,36 @@ module.exports = class Model {
    * @returns {Array}
    */
   select(paramNames) {
-    let res = [];
+    let params = {};
     for (let paramName of paramNames) {
-      let x = _.findWhere({param: paramName});
-      if(x !== undefined) {
-        res.push(x);
+      if(this.params[paramName] !== undefined) {
+        params[paramName] = this.params[paramName];
       }
     }
 
-    // Need to implement a class that has asObject functions
-    return new Convertible(res);
+    return new Model(params);
+  }
+
+  /*
+   * Returns one instance of the model
+   * @returns {Object}
+   */
+  one() {
+    return this.params;
+  }
+
+  /*
+   * Returns many instances of the model
+   * @param {integer} count the number of instances to return
+   * @returns {Array}
+   */
+  many(count = 2) {
+    let arr = [];
+
+    for (let i = 0; i < count; i++) {
+      arr.push(this.params);
+    }
+
+    return this.params;
   }
 };
