@@ -1,10 +1,10 @@
 'use strict';
 require('babel-register');
-let argv       = require('yargs').argv;
-let path       = require('path');
-let _          = require('lodash');
-let fs         = require('fs');
-let handlebars = require('handlebars');
+let argv = require('yargs').argv;
+let path = require('path');
+let _    = require('lodash');
+let fs   = require('fs');
+let ejs  = require('ejs');
 
 if(argv.i && argv.o) {
   // Get the execution directory
@@ -15,8 +15,8 @@ if(argv.i && argv.o) {
   let data = require(`${cwd}/${inputFile}`);
 
   // Parse the HTML using the data
-  let templateFile = fs.readFileSync(`${__dirname}/templates/default.handlebars`).toString();
-  let template     = handlebars.compile(templateFile);
+  let templateFile = fs.readFileSync(`${__dirname}/templates/index.ejs`).toString();
+  let template     = ejs.compile(templateFile);
   let html         = template(data);
 
   // Create the needed directories if they don't already exist
