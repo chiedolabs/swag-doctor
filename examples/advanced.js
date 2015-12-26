@@ -1,7 +1,7 @@
 'use strict';
 import Model from '../src/Model';
 
-let user = Model.new({
+let user = new Model({
   'id': { description: '...', example: 'ae3432aeb35563245'},
   'name': { description: '...', example: 'Jane Doe'},
   'email':{
@@ -80,7 +80,7 @@ let updateUser = {
   group: 'User',
 };
 
-export default {
+module.exports = {
   path: {
     '/users': [ createUser ],
     '/users/:id': [ getUser, updateUser ],
