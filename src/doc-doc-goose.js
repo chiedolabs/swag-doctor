@@ -1,20 +1,34 @@
 'use strict';
 require('babel-register');
-let argv = require('yargs').argv;
-let path= require('path');
-
-let cwd = path.resolve('.');
+let argv       = require('yargs').argv;
+let path       = require('path');
+let _          = require('lodash');
+let fs         = require('fs');
+let handlebars = require('handlebars');
 
 if(argv.i && argv.o) {
-  let fs         = require('fs');
-  let handlebars = require('handlebars');
-  let data       = require(`${cwd}/${argv.i}`);
+  // Get the execution directory
+  let cwd = path.resolve('.');
+  let inputFile = _.trimLeft(argv.i, './');
+  let outputDir = _.trimRight(argv.o, '/');
 
-  // parse the HTML using the data
+  let data = require(`${cwd}/${inputFile}`);
+
+  // Parse the HTML using the data
   let templateFile = fs.readFileSync(`${__dirname}/templates/default.handlebars`).toString();
   let template     = handlebars.compile(templateFile);
   let html         = template(data);
 
-  //save the file
-  fs.writeFile(`${cwd}/${argv.o}/index.html`, html, 'utf8');
+  // Create the needed directories if they don't already exist
+  let paths = outputDir.split('/');
+  let dir = './';
+  for (let i = 0; i < paths.length; i++) {
+    dir = `${dir}/${paths[i]}`;
+    if (!fs.existsSync(dir)){
+      fs.mkdirSync(dir);
+    }
+  }
+
+  // Save the docs
+  fs.writeFile(`${cwd}/${outputDir}/index.html`, html, 'utf8');
 }
