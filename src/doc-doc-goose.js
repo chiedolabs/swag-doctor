@@ -11,4 +11,4 @@ let template     = handlebars.compile(templateFile);
 let html         = template(data);
 
 //save the file
-console.log(html);
+fs.writeFile('docs/index.html', html, 'utf8');
