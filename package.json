@@ -4,7 +4,7 @@
   "description": "Documentation Generator",
   "scripts": {
     "prepublish": "./node_modules/babel-cli/bin/babel.js -d lib src/",
-    "update-docs": "node --harmony ./lib/doc-doc-goose.js"
+    "update-docs": "node --harmony ./src/doc-doc-goose.js"
   },
   "keywords": [
     "Node",
@@ -18,7 +18,7 @@
     "url": "NEED TO ADD"
   },
   "bin": {
-    "goose": "lib/doc-doc-goose.js"
+    "goose": "src/doc-doc-goose.js"
   },
   "devDependencies": {
     "babel-cli": "^6.3.17",
