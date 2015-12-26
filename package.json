@@ -2,7 +2,6 @@
   "name": "doc-doc-goose",
   "version": "1.0.0",
   "description": "Documentation Generator",
-  "main": "lib/doc-doc-goose.js",
   "scripts": {
     "prepublish": "./node_modules/babel-cli/bin/babel.js -d lib src/"
   },
@@ -16,6 +15,9 @@
   "repository": {
     "type": "git",
     "url": "NEED TO ADD"
+  },
+  "bin": {
+    "goose": "lib/doc-doc-goose.js"
   },
   "devDependencies": {
     "babel-cli": "^6.3.17",
