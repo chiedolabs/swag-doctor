@@ -81,7 +81,7 @@ let updateUser = {
 };
 
 module.exports = {
-  path: {
+  paths: {
     '/users': [ createUser ],
     '/users/:id': [ getUser, updateUser ],
   },
