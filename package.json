@@ -4,7 +4,7 @@
   "description": "Documentation Generator",
   "scripts": {
     "prepublish": "./node_modules/babel-cli/bin/babel.js -d lib src/",
-    "update-docs": "node --harmony ./src/doc-doc-goose.js"
+    "update-docs": "node --harmony ./src/doc-doc-goose.js -i examples/advanced.js -o examples/docs"
   },
   "keywords": [
     "Node",
