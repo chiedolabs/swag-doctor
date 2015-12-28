@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { Button } from 'react-bootstrap';
 import { generateID } from '../utils/functions';
+import Parameters from './Parameters';
 
 class Action extends Component{
 
@@ -39,7 +40,7 @@ class Action extends Component{
       bodyParamsOutput = (
         <div>
           <h4>Parameters</h4>
-          <div>{JSON.stringify(bodyParams)}</div>
+          <Parameters parameters={bodyParams} />
         </div>
       );
     }
