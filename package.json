@@ -25,7 +25,6 @@
     "goose": "doc-doc-goose.js"
   },
   "devDependencies": {
-    "ejs": "^2.3.4",
     "exports-loader": "^0.6.2",
     "express": "^4.13.3",
     "gulp": "^3.9.0",
