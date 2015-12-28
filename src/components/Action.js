@@ -13,10 +13,10 @@ class Action extends Component{
 
     return (
       <div>
-        <Button bsStyle="success">{action.method}</Button>
-        <div id={`${generateID(action.name)}`}>
-          {action.name}
-        </div>
+        <Button bsStyle="success" className="pull-left">{action.method}</Button>
+        <h3 id={`${generateID(action.name)}`}>
+          &nbsp;{action.name}
+        </h3>
       </div>
     );
   }

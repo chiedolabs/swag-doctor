@@ -44,7 +44,7 @@ let tokenHeader = {
 
 let createUser = {
   name: 'Create user',
-  method: 'GET',
+  method: 'POST',
   group: 'User',
   description: 'Allows someone to create a user.',
   params: {
