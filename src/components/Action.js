@@ -50,6 +50,7 @@ class Action extends Component{
         <h3 id={`${generateID(action.name)}`}>
           &nbsp;{action.name}
         </h3>
+        <br/>
         {urlParamsOutput}
         {bodyParamsOutput}
       </div>
