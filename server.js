@@ -38,6 +38,8 @@ app.set('view engine', 'ejs');
 app.get('*', (req, res) => {
   res.render(path.join(__dirname, 'templates','index.ejs'), {
     docDocGooseData: data,
+    js: '/static/js/react-bundle.js',
+    css: '/static/css/style.css',
   });
 });
 

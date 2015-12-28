@@ -16,7 +16,11 @@ if(argv.i && argv.o) {
   let data         = require(`${cwd}/${inputFile}`);
   let templateFile = fs.readFileSync(`${__dirname}/templates/index.ejs`).toString();
   let template     = ejs.compile(templateFile);
-  let html         = template({docDocGooseData: data});
+  let html         = template({
+    docDocGooseData: data,
+    js: 'static/js/react-bundle.js',
+    css: 'static/css/style.css',
+  });
 
   // Create the needed directories if they don't already exist
   let paths = outputDir.split('/');
