@@ -6,9 +6,9 @@
     "prepublish": "./node_modules/babel-cli/bin/babel.js -d lib src/",
     "clean": "rimraf dist",
     "build": "npm run clean && NODE_ENV=production webpack -p --config webpack.config.prod.js && gulp build",
-    "start": "NODE_ENV=development node --harmony server.js",
+    "start": "NODE_ENV=development nodemon --harmony server.js",
     "sass-watch": "gulp sass-watch",
-    "update-docs": "node --harmony doc-doc-goose.js -i /examples/advanced.js -o examples/docs"
+    "update-docs": "node --harmony doc-doc-goose.js -i src/examples/advanced.js -o examples/docs"
   },
   "keywords": [
     "Node",
@@ -49,6 +49,7 @@
     "imports-loader": "^0.6.5",
     "lodash": "^3.10.1",
     "ncp": "^2.0.0",
+    "nodemon": "^1.8.1",
     "react": "^0.14.0",
     "react-addons-test-utils": "^0.14.0",
     "react-dom": "^0.14.0",

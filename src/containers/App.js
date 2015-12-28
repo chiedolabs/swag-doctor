@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 
 let data = window.docDocGooseData;
-console.dir(data);
 
 class App extends Component{
   render(){

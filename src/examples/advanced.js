@@ -1,5 +1,5 @@
 'use strict';
-import Model from '../src/Model';
+import Model from '../Model';
 
 let user = new Model({
   'id': { description: '...', example: 'ae3432aeb35563245'},
