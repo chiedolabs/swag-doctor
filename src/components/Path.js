@@ -12,7 +12,7 @@ class Path extends Component{
 
     return (
       <div key={path.route}>
-        <h1>{path.route}</h1>
+        <h2>{path.route}</h2>
         <Actions actions={path.actions} />
       </div>
     );

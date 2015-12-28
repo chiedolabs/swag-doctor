@@ -1,5 +1,5 @@
 'use strict';
-import Model from '../src/Model';
+let Model = require('../src/Model');
 
 let user = new Model({
   'id': { description: '...', example: 'ae3432aeb35563245'},
@@ -81,6 +81,7 @@ let updateUser = {
 };
 
 module.exports = {
+  name: 'Hello World',
   paths: [
     { route: '/users', actions: [ createUser ] },
     { route: '/users/:id', actions: [ getUser, updateUser ] },

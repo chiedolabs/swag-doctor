@@ -3,7 +3,13 @@ import Main from '../components/Main';
 import SideNav from '../components/SideNav';
 import { Col, Row, Grid } from 'react-bootstrap';
 
-let data = window.docDocGooseData;
+let data;
+// In development, load with commonjs for hot reloading benefits
+if(process.env.NODE_ENV === 'development') {
+  data = require('../../examples/advanced');
+} else {
+  data = window.docDocGooseData;
+}
 
 class App extends Component{
   render(){
@@ -14,6 +20,7 @@ class App extends Component{
             <SideNav paths={data.paths} />
           </Col>
           <Col xs={9} md={9}>
+            <h1>{data.name}</h1>
             <Main paths={data.paths} />
           </Col>
         </Row>
