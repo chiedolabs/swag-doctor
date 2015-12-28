@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import * as _ from 'lodash';
 import { Nav, NavItem, Row } from 'react-bootstrap';
+import { generateID } from '../utils/functions';
 
 class SideNav extends Component{
 
@@ -14,7 +15,7 @@ class SideNav extends Component{
     let sidenavOutput = _.map(paths, (path) => {
       let subnavOutput = _.map(path.actions, (action) => {
         return (
-          <NavItem key={action.name}>
+          <NavItem key={action.name} href={`#${generateID(action.name)}`}>
             {action.name}
           </NavItem>
         );
@@ -22,7 +23,7 @@ class SideNav extends Component{
 
       return (
         <Nav stacked key={path.route}>
-          <NavItem className="nav-header">
+          <NavItem href={`#${generateID(path.route)}`} className="nav-header">
             {path.route}
           </NavItem>
           {subnavOutput}

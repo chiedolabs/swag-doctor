@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Actions from './Actions';
+import { generateID } from '../utils/functions';
 
 class Path extends Component{
 
@@ -12,7 +13,7 @@ class Path extends Component{
 
     return (
       <div key={path.route}>
-        <h2>{path.route}</h2>
+        <h2 id={`${generateID(path.route)}`}>{path.route}</h2>
         <Actions actions={path.actions} />
       </div>
     );

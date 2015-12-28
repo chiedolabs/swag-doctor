@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import { Button } from 'react-bootstrap';
+import { generateID } from '../utils/functions';
 
 class Action extends Component{
 
@@ -13,7 +14,7 @@ class Action extends Component{
     return (
       <div>
         <Button bsStyle="success">{action.method}</Button>
-        <div>
+        <div id={`${generateID(action.name)}`}>
           {action.name}
         </div>
       </div>
