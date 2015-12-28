@@ -13,7 +13,7 @@ class Path extends Component{
 
     return (
       <div key={path.route}>
-        <h2 id={`${generateID(path.route)}`}>{path.route}</h2>
+        <h2 id={`${generateID(path.route)}`} className="url-path">{path.route}</h2>
         <Actions actions={path.actions} />
       </div>
     );

@@ -1,5 +1,12 @@
 @import "bootstrap";
 
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}
+
+
 .main { width: 1200px; }
 .viewer { margin-left: 300px; }
 .side-nav {
@@ -19,4 +26,8 @@
 
 h1, h2 {
   padding-bottom: 9px; border-bottom: 1px solid #eee;
+}
+
+.url-path {
+  background: #000000; color: #ffffff; padding: 10px; @include border-radius(5px);
 }
