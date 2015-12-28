@@ -82,7 +82,7 @@ let updateUser = {
 
 module.exports = {
   paths: [
-    { route: '/users', requests: [ createUser ] },
-    { route: '/users/:id', requests: [ getUser, updateUser ] },
+    { route: '/users', actions: [ createUser ] },
+    { route: '/users/:id', actions: [ getUser, updateUser ] },
   ],
 };
