@@ -1,7 +1,11 @@
 @import "bootstrap";
 
 .main { width: 1200px; }
-.side-nav { background-color: #f5f5f5; padding: 20px; height: 100vh; overflow-y: scroll; }
+.viewer { margin-left: 300px; }
+.side-nav {
+  background-color: #f5f5f5; padding: 20px; height: 100vh; overflow-y: scroll;
+  position: fixed; width: 300px;
+}
 
 .nav-header, .nav-item { display: block; }
 

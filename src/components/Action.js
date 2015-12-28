@@ -17,6 +17,12 @@ class Action extends Component{
         <h3 id={`${generateID(action.name)}`}>
           &nbsp;{action.name}
         </h3>
+        <div>
+          <br/>
+          <h4>URL Parameters</h4>
+          <h4>Parameters</h4>
+          {JSON.stringify(action.params)}
+        </div>
       </div>
     );
   }

@@ -19,7 +19,7 @@ class App extends Component{
           <Col xs={3} md={3} className="side-nav">
             <SideNav paths={data.paths} />
           </Col>
-          <Col xs={9} md={9}>
+          <Col xs={9} md={9} className="viewer">
             <h1>{data.name}</h1>
             <p>{data.description}</p>
             <Main paths={data.paths} />

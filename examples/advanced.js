@@ -45,7 +45,6 @@ let tokenHeader = {
 let createUser = {
   name: 'Create user',
   method: 'POST',
-  group: 'User',
   description: 'Allows someone to create a user.',
   params: {
     body: user.select(['name', 'email', 'username', 'password']).one(),
@@ -66,7 +65,6 @@ let createUser = {
 let getUser = {
   name: 'Get user',
   method: 'GET',
-  group: 'User',
   params: {
     url: user.select(['id']).one(),
     query: [],
@@ -77,7 +75,6 @@ let getUser = {
 let updateUser = {
   name: 'Update user',
   method: 'PUT',
-  group: 'User',
 };
 
 module.exports = {
