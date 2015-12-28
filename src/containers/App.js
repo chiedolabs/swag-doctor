@@ -21,6 +21,7 @@ class App extends Component{
           </Col>
           <Col xs={9} md={9}>
             <h1>{data.name}</h1>
+            <p>{data.description}</p>
             <Main paths={data.paths} />
           </Col>
         </Row>
