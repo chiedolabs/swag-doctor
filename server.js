@@ -1,7 +1,10 @@
 'use strict';
-let env  = process.env.NODE_ENV || 'development';
-let fs   = require('fs');
+require('babel-register');
+let env     = process.env.NODE_ENV || 'development';
+let fs      = require('fs');
 let express = require('express');
+let path    = require('path');
+let data    = require(`./examples/advanced`);
 
 fs.stat('.env', (err, stat) => {
   if(err === null) {
@@ -27,7 +30,16 @@ if(env === 'development') {
 }
 
 // Allows for the use of other static resources
-app.use('/', express.static('dist'));
+// Allows for the use of other static resources
+app.use('/static', express.static('dist/static'));
+
+app.set('view engine', 'ejs');
+
+app.get('*', (req, res) => {
+  res.render(path.join(__dirname, 'templates','index.ejs'), {
+    docDocGooseData: data,
+  });
+});
 
 app.listen(PORT, (err) => {
   if (err) {

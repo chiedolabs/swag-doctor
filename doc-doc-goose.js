@@ -5,7 +5,7 @@ let path   = require('path');
 let _      = require('lodash');
 let fs     = require('fs');
 let ncp    = require('ncp').ncp;
-let appDir = path.dirname(require.main.filename);
+let ejs    = require('ejs');
 
 if(argv.i && argv.o) {
   // Get the execution directory
@@ -13,7 +13,10 @@ if(argv.i && argv.o) {
   let inputFile = _.trimLeft(argv.i, './');
   let outputDir = _.trimRight(argv.o, '/');
 
-  let data = require(`${cwd}/${inputFile}`);
+  let data         = require(`${cwd}/${inputFile}`);
+  let templateFile = fs.readFileSync(`${__dirname}/templates/index.ejs`).toString();
+  let template     = ejs.compile(templateFile);
+  let html         = template({docDocGooseData: data});
 
   // Create the needed directories if they don't already exist
   let paths = outputDir.split('/');
@@ -26,11 +29,11 @@ if(argv.i && argv.o) {
   }
 
   // Copy the react app from this package to the user's output dir
-  ncp(`${appDir}/dist/`, `${cwd}/${outputDir}/`, {clobber: true}, (err) => {
+  ncp(`${__dirname}/dist/`, `${cwd}/${outputDir}/`, {clobber: true}, (err) => {
     if (err) {
       return console.error(err);
     }
     // Save the doc data file
-    fs.writeFile(`${cwd}/${outputDir}/data.json`, JSON.stringify(data) , 'utf8');
+    fs.writeFile(`${cwd}/${outputDir}/index.html`, html , 'utf8');
   });
 }

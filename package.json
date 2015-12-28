@@ -4,7 +4,7 @@
   "description": "Documentation Generator",
   "scripts": {
     "prepublish": "./node_modules/babel-cli/bin/babel.js -d lib src/",
-    "clean": "rimraf dist/static",
+    "clean": "rimraf dist",
     "build": "npm run clean && NODE_ENV=production webpack -p --config webpack.config.prod.js && gulp build",
     "start": "NODE_ENV=development node --harmony server.js",
     "sass-watch": "gulp sass-watch",
@@ -36,6 +36,7 @@
     "babel-preset-stage-0": "^6.3.13",
     "babel-register": "^6.3.13",
     "dotenv": "^1.2.0",
+    "ejs": "^2.3.4",
     "eslint": "^1.10.3",
     "eslint-plugin-babel": "^3.0.0",
     "eslint-plugin-react": "^3.11.3",
