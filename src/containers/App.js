@@ -14,7 +14,7 @@ if(process.env.NODE_ENV === 'development') {
 class App extends Component{
   render(){
     return (
-      <Grid>
+      <Grid className="pull-left">
         <Row className="main">
           <Col xs={3} md={3} className="side-nav">
             <SideNav paths={data.paths} />
