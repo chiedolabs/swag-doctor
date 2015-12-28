@@ -8,7 +8,7 @@
     "build": "npm run clean && NODE_ENV=production webpack -p --config webpack.config.prod.js && gulp build",
     "start": "NODE_ENV=development nodemon --harmony server.js",
     "sass-watch": "gulp sass-watch",
-    "update-docs": "node --harmony doc-doc-goose.js -i src/examples/advanced.js -o examples/docs"
+    "update-docs": "node --harmony doc-doc-goose.js -i examples/advanced.js -o examples/docs"
   },
   "keywords": [
     "Node",

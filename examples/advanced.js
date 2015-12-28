@@ -1,12 +1,12 @@
 'use strict';
-import Model from '../Model';
+import Model from '../src/Model';
 
 let user = new Model({
   'id': { description: '...', example: 'ae3432aeb35563245'},
   'name': { description: '...', example: 'Jane Doe'},
   'email':{
     description:'...',
-    example: function() {
+    example: () => {
       // allows for use of generators
       return 'email@email.com';
     },
