@@ -7,34 +7,62 @@ class Parameters extends Component{
 
   static propTypes = {
     parameters: PropTypes.object,
+    type: PropTypes.bool,
   };
 
+  static defaultProps = {
+    type: true,
+  }
+
   render(){
-    const { parameters } = this.props;
+    const { parameters, type } = this.props;
     let keys = [];
 
     for(let k in parameters) {
       keys.push(k);
     };
-
     let parametersOutput = _.map(keys, (key) => {
-      return (
+      if(type){
+        return (
+          <tr>
+            <td>{key}</td>
+            <td>{getType(parameters[key])}</td>
+            <td>{parameters[key].description}</td>
+          </tr>
+        );
+      } else {
+        return (
+          <tr>
+            <td>{key}</td>
+            <td>{parameters[key].description}</td>
+          </tr>
+        );
+      }
+    });
+
+    let headersOutput;
+
+    if(type){
+      headersOutput = (
         <tr>
-          <td>{key}</td>
-          <td>{getType(parameters[key])}</td>
-          <td>{parameters[key].description}</td>
+          <th>Field</th>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
       );
-    });
+    } else {
+      headersOutput = (
+        <tr>
+          <th>Field</th>
+          <th>Description</th>
+        </tr>
+      );
+    }
 
     return (
       <Table striped bordered condensed hover>
         <thead>
-          <tr>
-            <th>Field</th>
-            <th>Type</th>
-            <th>Description</th>
-          </tr>
+          {headersOutput}
         </thead>
         <tbody>
           {parametersOutput}

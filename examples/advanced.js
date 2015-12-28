@@ -75,6 +75,11 @@ let getUser = {
 let updateUser = {
   name: 'Update user',
   method: 'PUT',
+  params: {
+    url: user.select(['id']).one(),
+    body: user.select(['name','email','username']).one(),
+    query: [],
+  },
 };
 
 module.exports = {

@@ -23,7 +23,7 @@ class Action extends Component{
       }
 
       if(action.params.url) {
-        bodyParams = action.params.url;
+        urlParams = action.params.url;
       }
     }
 
@@ -31,7 +31,7 @@ class Action extends Component{
       urlParamsOutput = (
         <div>
           <h4>URL Parameters</h4>
-          <div>{JSON.stringify(urlParams)}</div>;
+          <Parameters parameters={urlParams} type={false} />
         </div>
       );
     }
