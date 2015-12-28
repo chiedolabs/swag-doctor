@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import * as _ from 'lodash';
-import Actions from './Actions';
+import Path from './Path';
 
 class Main extends Component{
 
@@ -13,10 +13,7 @@ class Main extends Component{
 
     let pathsOutput = _.map(paths, (path) => {
       return (
-        <div key={path.route}>
-          <h1>{path.route}</h1>
-          <Actions actions={path.actions} />
-        </div>
+        <Path key={path.route} path={path} />
       );
     });
 

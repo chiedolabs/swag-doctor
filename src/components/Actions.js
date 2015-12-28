@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import * as _ from 'lodash';
+import Action from './Action';
 
 class Actions extends Component{
 
@@ -11,7 +12,7 @@ class Actions extends Component{
     const { actions } = this.props;
 
     let actionsOutput = _.map(actions, (action) => {
-      return <div key={action.name}>{action.name}</div>;
+      return <Action key={action.name} action={action} />;
     });
 
     return (
