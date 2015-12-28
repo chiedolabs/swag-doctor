@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import * as _ from 'lodash';
-import { Nav, NavItem } from 'react-bootstrap';
-import SubNav from './SubNav';
+import { Nav, NavItem, Row } from 'react-bootstrap';
 
 class SideNav extends Component{
 
@@ -13,20 +12,28 @@ class SideNav extends Component{
     const { paths } = this.props;
 
     let sidenavOutput = _.map(paths, (path) => {
+      let subnavOutput = _.map(path.actions, (action) => {
+        return (
+          <NavItem key={action.name}>
+            {action.name}
+          </NavItem>
+        );
+      });
+
       return (
-      <Nav bsStyle="pills" stacked key={path.route}>
-        <NavItem className="nav-header">
-          {path.route}
-        </NavItem>
-        <SubNav actions={path.actions} />
-      </Nav>
+        <Nav stacked key={path.route}>
+          <NavItem className="nav-header">
+            {path.route}
+          </NavItem>
+          {subnavOutput}
+        </Nav>
       );
     });
 
     return (
-      <div>
+      <Row>
         {sidenavOutput}
-      </div>
+      </Row>
     );
   }
 };

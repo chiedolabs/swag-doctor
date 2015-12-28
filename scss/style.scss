@@ -1,11 +1,16 @@
 @import "bootstrap";
 
 .main { width: 1200px; }
-.side-nav { background-color: #f5f5f5; }
+.side-nav {
+  background-color: #f5f5f5;
 
-.nav-header{
+}
+
+.nav-header, .nav-item {
   display: block;
-  padding: 3px 15px;
+}
+
+.nav-header {
   font-size: 11px;
   font-weight: bold;
   line-height: 20px;
@@ -18,6 +23,6 @@
     font-family: "Source Sans Pro", sans-serif;
     font-weight: 700;
     font-size: 16px;
-    background-color: #ffffff;     
+    background-color: #ffffff;
   }
 }
