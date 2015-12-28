@@ -4,7 +4,6 @@ let argv = require('yargs').argv;
 let path = require('path');
 let _    = require('lodash');
 let fs   = require('fs');
-let ejs  = require('ejs');
 
 if(argv.i && argv.o) {
   // Get the execution directory
@@ -13,11 +12,6 @@ if(argv.i && argv.o) {
   let outputDir = _.trimRight(argv.o, '/');
 
   let data = require(`${cwd}/${inputFile}`);
-
-  // Parse the HTML using the data
-  let templateFile = fs.readFileSync(`${__dirname}/templates/index.ejs`).toString();
-  let template     = ejs.compile(templateFile);
-  let html         = template(data);
 
   // Create the needed directories if they don't already exist
   let paths = outputDir.split('/');
@@ -30,5 +24,5 @@ if(argv.i && argv.o) {
   }
 
   // Save the docs
-  fs.writeFile(`${cwd}/${outputDir}/index.html`, html, 'utf8');
+  fs.writeFile(`${cwd}/${outputDir}/data.json`, JSON.stringify(data) , 'utf8');
 }
