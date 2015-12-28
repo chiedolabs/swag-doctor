@@ -26,7 +26,7 @@ if(argv.i && argv.o) {
   }
 
   // Copy the react app from this package to the user's output dir
-  ncp(`${appDir}/dist/`, `${cwd}/${outputDir}/`, (err) => {
+  ncp(`${appDir}/dist/`, `${cwd}/${outputDir}/`, {clobber: true}, (err) => {
     if (err) {
       return console.error(err);
     }
