@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Paths from '../components/Paths';
+import Main from '../components/Main';
 import SideNav from '../components/SideNav';
 import { Col, Row, Grid } from 'react-bootstrap';
 
@@ -14,7 +14,7 @@ class App extends Component{
             <SideNav paths={data.paths} />
           </Col>
           <Col xs={9} md={9}>
-            <Paths paths={data.paths} />
+            <Main paths={data.paths} />
           </Col>
         </Row>
       </Grid>

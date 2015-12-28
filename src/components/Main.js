@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import * as _ from 'lodash';
 import Actions from './Actions';
 
-class Paths extends Component{
+class Main extends Component{
 
   static propTypes = {
     paths: PropTypes.array,
@@ -27,4 +27,4 @@ class Paths extends Component{
     );
   }
 };
-export default Paths;
+export default Main;
