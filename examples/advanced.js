@@ -2,17 +2,17 @@
 import ob from 'objob';
 
 let user = {
-  'id': { description: '...', example: 'ae3432aeb35563245'},
-  'name': { description: '...', example: 'Jane Doe'},
+  'id': { description: '...', resolve: 'ae3432aeb35563245'},
+  'name': { description: '...', resolve: 'Jane Doe'},
   'email':{
     description:'...',
-    example: () => {
+    resolve: () => {
       // allows for use of generators
       return 'email@email.com';
     },
   },
-  'username': { description: '...', example: 'janedoe'},
-  'password': { description: '...', example: 'testtest'},
+  'username': { description: '...', resolve: 'janedoe'},
+  'password': { description: '...', resolve: 'testtest'},
 };
 
 let unauthorizedError = {
@@ -85,8 +85,8 @@ let updateUser = {
 };
 
 module.exports = {
-  name: 'Example API Documentation',
-  description: 'This is an example of the documentation you can create with Swaglet',
+  name: 'resolve API Documentation',
+  description: 'This is an resolve of the documentation you can create with Swaglet',
   paths: {
     '/users': {
       actions: [ createUser ],

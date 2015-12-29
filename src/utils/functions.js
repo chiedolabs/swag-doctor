@@ -5,10 +5,10 @@ module.exports.generateID = function(x){
 };
 
 module.exports.getType = function(field){
-  if(typeof field.example === 'function') {
-    return typeof field.example();
+  if(typeof field.resolve === 'function') {
+    return typeof field.resolve();
   } else {
-    return typeof field.example;
+    return typeof field.resolve;
   }
 };
 
@@ -17,10 +17,10 @@ let swagObToJSON = function(x){
 
   for(let i in x) {
     if(_.isObject(x[i])) {
-      if(_.isFunction(x[i].example)) {
-        res[i] = x[i].example();
-      } else if(_.isString(x[i].example)) {
-        res[i] = x[i].example;
+      if(_.isFunction(x[i].resolve)) {
+        res[i] = x[i].resolve();
+      } else if(_.isString(x[i].resolve)) {
+        res[i] = x[i].resolve;
       } else {
         res[i] = swagObToJSON(x[i]);
       }
