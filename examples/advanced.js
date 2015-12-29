@@ -1,5 +1,5 @@
 'use strict';
-let ob = require('objob').default;
+let ob = require('objob');
 
 let user = {
   'id': { description: '...', example: 'ae3432aeb35563245'},
