@@ -1,5 +1,5 @@
 'use strict';
-let ob = require('objob');
+import ob from 'objob';
 
 let user = {
   'id': { description: '...', example: 'ae3432aeb35563245'},
