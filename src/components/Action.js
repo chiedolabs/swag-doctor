@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import { Button } from 'react-bootstrap';
 import { generateID } from '../utils/functions';
 import Parameters from './Parameters';
+import dedent from 'dedent';
 
 class Action extends Component{
 
@@ -38,10 +39,17 @@ class Action extends Component{
 
     let responsesOutput = action.responses.map((response) => {
       return (
-        <div>
+        <div key={response.status}>
           <h5>{response.name}</h5>
           <h6>Status Code: {response.status}</h6>
-
+          <pre>
+            {dedent`
+              {
+                hello: 'world',
+                bye: 'world'
+              }
+            `}
+          </pre>
         </div>
       );
     });
