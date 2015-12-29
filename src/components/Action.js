@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import { Button } from 'react-bootstrap';
 import { generateID } from '../utils/functions';
 import Parameters from './Parameters';
-import dedent from 'dedent';
+import jsonString from 'json-string';
 
 class Action extends Component{
 
@@ -43,11 +43,8 @@ class Action extends Component{
           <h5>{response.name}</h5>
           <h6>Status Code: {response.status}</h6>
           <pre>
-            {dedent`
-              {
-                hello: 'world',
-                bye: 'world'
-              }
+            {`
+              ${jsonString(response.body)}
             `}
           </pre>
         </div>
