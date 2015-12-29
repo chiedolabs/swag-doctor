@@ -1,7 +1,7 @@
 'use strict';
-let Model = require('../src/Model');
+let ob = require('objob').default;
 
-let user = new Model({
+let user = {
   'id': { description: '...', example: 'ae3432aeb35563245'},
   'name': { description: '...', example: 'Jane Doe'},
   'email':{
@@ -13,7 +13,7 @@ let user = new Model({
   },
   'username': { description: '...', example: 'janedoe'},
   'password': { description: '...', example: 'testtest'},
-});
+};
 
 let unauthorizedError = {
   name: 'Unauthorized Error',
@@ -47,14 +47,14 @@ let createUser = {
   method: 'POST',
   description: 'Allows someone to create a user.',
   params: {
-    body: user.select(['name', 'email', 'username', 'password']).one(),
+    body: ob(user).with(['name', 'email', 'username', 'password']),
   },
   responses: [
     {
       name: 'Success',
       status: 200,
       body: {
-        user: user.select(['id','name', 'email', 'username']).one(),
+        user: ob(user).with(['id','name', 'email', 'username']),
       },
     },
     unauthorizedError,
@@ -66,7 +66,7 @@ let getUser = {
   name: 'Get user',
   method: 'GET',
   params: {
-    url: user.select(['id']).one(),
+    url: ob(user).with(['id']),
     query: [],
   },
   headers: [ tokenHeader ],
@@ -76,8 +76,8 @@ let updateUser = {
   name: 'Update user',
   method: 'PUT',
   params: {
-    url: user.select(['id']).one(),
-    body: user.select(['name','email','username']).one(),
+    url: ob(user).with(['id']),
+    body: ob(user).with(['name','email','username']),
     query: [],
   },
 };

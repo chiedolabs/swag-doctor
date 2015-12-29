@@ -24,6 +24,12 @@
   "bin": {
     "goose": "doc-doc-goose.js"
   },
+  "dependencies": {
+    "ejs": "^2.3.4",
+    "lodash": "^3.10.1",
+    "ncp": "^2.0.0",
+    "yargs": "^3.31.0"
+  },
   "devDependencies": {
     "babel-cli": "^6.3.17",
     "babel-core": "^6.3.17",
@@ -36,7 +42,6 @@
     "babel-preset-stage-0": "^6.3.13",
     "babel-register": "^6.3.13",
     "dotenv": "^1.2.0",
-    "ejs": "^2.3.4",
     "eslint": "^1.10.3",
     "eslint-plugin-babel": "^3.0.0",
     "eslint-plugin-react": "^3.11.3",
@@ -47,9 +52,8 @@
     "gulp-sass": "^2.0.4",
     "gulp-sourcemaps": "^1.6.0",
     "imports-loader": "^0.6.5",
-    "lodash": "^3.10.1",
-    "ncp": "^2.0.0",
     "nodemon": "^1.8.1",
+    "objob": "^1.0.0",
     "react": "^0.14.0",
     "react-addons-test-utils": "^0.14.0",
     "react-bootstrap": "^0.28.1",
@@ -60,7 +64,6 @@
     "rimraf": "^2.4.3",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.4.0",
-    "webpack-hot-middleware": "^2.6.0",
-    "yargs": "^3.31.0"
+    "webpack-hot-middleware": "^2.6.0"
   }
 }
