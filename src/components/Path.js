@@ -6,14 +6,15 @@ class Path extends Component{
 
   static propTypes = {
     path: PropTypes.object,
+    route: PropTypes.string,
   };
 
   render(){
-    const { path } = this.props;
+    const { path, route } = this.props;
 
     return (
-      <div key={path.route}>
-        <h2 id={`${generateID(path.route)}`} className="url-path">{path.route}</h2>
+      <div>
+        <h2 id={`${generateID(route)}`} className="url-path">{route}</h2>
         <Actions actions={path.actions} />
       </div>
     );

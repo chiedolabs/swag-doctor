@@ -24,7 +24,7 @@ class Parameters extends Component{
     let parametersOutput = _.map(keys, (key) => {
       if(type){
         return (
-          <tr>
+          <tr key={key}>
             <td>{key}</td>
             <td>{getType(parameters[key])}</td>
             <td>{parameters[key].description}</td>
@@ -32,7 +32,7 @@ class Parameters extends Component{
         );
       } else {
         return (
-          <tr>
+          <tr key={key}>
             <td>{key}</td>
             <td>{parameters[key].description}</td>
           </tr>

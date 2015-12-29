@@ -85,8 +85,12 @@ let updateUser = {
 module.exports = {
   name: 'Example API Documentation',
   description: 'This is an example of the documentation you can create with Doc Doc Goose.',
-  paths: [
-    { route: '/users', actions: [ createUser ] },
-    { route: '/users/:id', actions: [ getUser, updateUser ] },
-  ],
+  paths: {
+    '/users': {
+      actions: [ createUser ],
+    },
+    '/users/:id': {
+      actions: [ getUser, updateUser ],
+    },
+  },
 };

@@ -1,19 +1,20 @@
 import React, {Component, PropTypes} from 'react';
 import * as _ from 'lodash';
 import Path from './Path';
+import ob from 'objob';
 
 class Main extends Component{
 
   static propTypes = {
-    paths: PropTypes.array,
+    paths: PropTypes.object,
   };
 
   render(){
     const { paths } = this.props;
-
-    let pathsOutput = _.map(paths, (path) => {
+    let routes = ob(paths).keys();
+    let pathsOutput = _.map(routes, (route) => {
       return (
-        <Path key={path.route} path={path} />
+        <Path key={route} path={paths[route]} route={route} />
       );
     });
 

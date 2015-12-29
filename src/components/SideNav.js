@@ -2,18 +2,21 @@ import React, {Component, PropTypes} from 'react';
 import * as _ from 'lodash';
 import { Nav, NavItem, Row } from 'react-bootstrap';
 import { generateID } from '../utils/functions';
+import ob from 'objob';
 
 class SideNav extends Component{
 
   static propTypes = {
-    paths: PropTypes.array,
+    paths: PropTypes.object,
   };
 
   render(){
     const { paths } = this.props;
 
-    let sidenavOutput = _.map(paths, (path) => {
-      let subnavOutput = _.map(path.actions, (action) => {
+    let routes = ob(paths).keys();
+
+    let sidenavOutput = _.map(routes, (route) => {
+      let subnavOutput = _.map(paths[route].actions, (action) => {
         return (
           <NavItem key={action.name} href={`#${generateID(action.name)}`}>
             {action.name}
@@ -22,9 +25,9 @@ class SideNav extends Component{
       });
 
       return (
-        <Nav stacked key={path.route}>
-          <NavItem href={`#${generateID(path.route)}`} className="nav-header">
-            {path.route}
+        <Nav stacked key={route}>
+          <NavItem href={`#${generateID(route)}`} className="nav-header">
+            {route}
           </NavItem>
           {subnavOutput}
         </Nav>
