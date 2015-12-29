@@ -31,17 +31,30 @@ class Action extends Component{
     if(urlParams){
       urlParamsOutput = (
         <div>
-          <h4>URL Parameters</h4>
+          <h5>URL Parameters</h5>
           <Parameters parameters={urlParams} type={false} />
         </div>
       );
     }
 
+    if(bodyParams){
+      bodyParamsOutput = (
+        <div>
+          <h5>Parameters</h5>
+          <Parameters parameters={bodyParams} />
+        </div>
+      );
+    }
+
+    // Need to generate the json response output from the json object here
+    // so I can use it later.
     let responsesOutput = action.responses.map((response) => {
       return (
         <div key={response.status}>
-          <h5>{response.name}</h5>
-          <h6>Status Code: {response.status}</h6>
+          <h4>{response.name}</h4>
+          <h5>Status Code: {response.status}</h5>
+          <h5>Fields:</h5>
+          <h5>Example</h5>
           <pre>
             {`
               ${jsonString(response.body)}
@@ -51,14 +64,6 @@ class Action extends Component{
       );
     });
 
-    if(bodyParams){
-      bodyParamsOutput = (
-        <div>
-          <h4>Parameters</h4>
-          <Parameters parameters={bodyParams} />
-        </div>
-      );
-    }
 
     return (
       <div>
@@ -69,7 +74,7 @@ class Action extends Component{
         <br/>
         {urlParamsOutput}
         {bodyParamsOutput}
-        <h4>Responses</h4>
+        <h5>Responses</h5>
         <div>
           {responsesOutput}
         </div>
