@@ -86,7 +86,7 @@ let updateUser = {
 
 module.exports = {
   name: 'resolve API Documentation',
-  description: 'This is an resolve of the documentation you can create with Swaglet',
+  description: 'This is an example of the documentation you can create with Swaglet',
   paths: {
     '/users': {
       actions: [ createUser ],
