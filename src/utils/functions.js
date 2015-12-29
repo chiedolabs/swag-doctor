@@ -16,7 +16,6 @@ let swagObToJSON = function(x){
   let res = {};
 
   for(let i in x) {
-    console.dir(x[i]);
     if(_.isObject(x[i])) {
       if(_.isFunction(x[i].example)) {
         res[i] = x[i].example();
