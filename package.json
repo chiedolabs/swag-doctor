@@ -47,6 +47,7 @@
     "eslint-plugin-react": "^3.11.3",
     "exports-loader": "^0.6.2",
     "express": "^4.13.3",
+    "faker": "^3.0.1",
     "gulp": "^3.9.0",
     "gulp-minify-css": "^1.2.1",
     "gulp-sass": "^2.0.4",

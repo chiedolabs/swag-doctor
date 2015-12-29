@@ -1,5 +1,6 @@
 'use strict';
 import ob from 'objob';
+import faker from 'faker';
 
 let user = {
   'id': { description: '...', resolve: 'ae3432aeb35563245'},
@@ -7,8 +8,7 @@ let user = {
   'email':{
     description:'...',
     resolve: () => {
-      // allows for use of generators
-      return 'email@email.com';
+      return faker.internet.email();
     },
   },
   'username': { description: '...', resolve: 'janedoe'},
