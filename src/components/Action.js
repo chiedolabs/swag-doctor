@@ -31,7 +31,7 @@ class Action extends Component{
     if(urlParams){
       urlParamsOutput = (
         <div>
-          <h5>URL Parameters</h5>
+          <h4>URL Parameters</h4>
           <Parameters parameters={urlParams} type={false} />
         </div>
       );
@@ -40,7 +40,7 @@ class Action extends Component{
     if(bodyParams){
       bodyParamsOutput = (
         <div>
-          <h5>Parameters</h5>
+          <h4>Body Parameters</h4>
           <Parameters parameters={bodyParams} />
         </div>
       );
@@ -72,7 +72,7 @@ class Action extends Component{
         <br/>
         {urlParamsOutput}
         {bodyParamsOutput}
-        <h5>Responses</h5>
+        <h4>Responses</h4>
         <div>
           {responsesOutput}
         </div>
