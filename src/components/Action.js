@@ -39,7 +39,8 @@ class Action extends Component{
     let responsesOutput = action.responses.map((response) => {
       return (
         <div>
-          <h5>{response.status}</h5>
+          <h5>{response.name}</h5>
+          <h6>Status Code: {response.status}</h6>
 
         </div>
       );
