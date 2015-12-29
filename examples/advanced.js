@@ -69,6 +69,7 @@ let getUser = {
     url: ob(user).with(['id']),
     query: [],
   },
+  responses: [],
   headers: [ tokenHeader ],
 };
 
@@ -80,11 +81,12 @@ let updateUser = {
     body: ob(user).with(['name','email','username']),
     query: [],
   },
+  responses: [],
 };
 
 module.exports = {
   name: 'Example API Documentation',
-  description: 'This is an example of the documentation you can create with Doc Doc Goose.',
+  description: 'This is an example of the documentation you can create with Swaglet',
   paths: {
     '/users': {
       actions: [ createUser ],

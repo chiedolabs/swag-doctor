@@ -36,6 +36,15 @@ class Action extends Component{
       );
     }
 
+    let responsesOutput = action.responses.map((response) => {
+      return (
+        <div>
+          <h5>{response.status}</h5>
+
+        </div>
+      );
+    });
+
     if(bodyParams){
       bodyParamsOutput = (
         <div>
@@ -54,6 +63,10 @@ class Action extends Component{
         <br/>
         {urlParamsOutput}
         {bodyParamsOutput}
+        <h4>Responses</h4>
+        <div>
+          {responsesOutput}
+        </div>
       </div>
     );
   }
