@@ -56,9 +56,7 @@ class Action extends Component{
           <h5>Fields:</h5>
           <h5>Example</h5>
           <pre>
-            {`
-              ${jsonString(response.body)}
-            `}
+            {`${jsonString(response.body)}`}
           </pre>
         </div>
       );
