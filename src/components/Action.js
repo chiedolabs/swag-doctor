@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import { Button } from 'react-bootstrap';
-import { generateID } from '../utils/functions';
+import { generateID, swagObToJSON } from '../utils/functions';
 import Parameters from './Parameters';
 import jsonString from 'json-string';
 
@@ -56,7 +56,7 @@ class Action extends Component{
           <h5>Fields:</h5>
           <h5>Example</h5>
           <pre>
-            {`${jsonString(response.body)}`}
+            {`${jsonString(swagObToJSON(response.body))}`}
           </pre>
         </div>
       );
