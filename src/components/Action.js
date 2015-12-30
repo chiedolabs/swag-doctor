@@ -51,8 +51,7 @@ class Action extends Component{
     let responsesOutput = action.responses.map((response) => {
       return (
         <div key={response.status}>
-          <h4>{response.name}</h4>
-          <h5>Status Code: {response.status}</h5>
+          <h4>{response.name} (status: {response.status})</h4>
           <h5>Fields:</h5>
           <h5>Example</h5>
           <pre>
@@ -72,7 +71,6 @@ class Action extends Component{
         <br/>
         {urlParamsOutput}
         {bodyParamsOutput}
-        <h4>Responses</h4>
         <div>
           {responsesOutput}
         </div>
