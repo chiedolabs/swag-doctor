@@ -50,6 +50,12 @@ let permissionsError = {
   },
 };
 
+let notFoundError = {
+  name: 'Not found',
+  status: 404,
+  body: 'Not found',
+};
+
 let tokenHeader = {
   name: 'Authentication Token',
   header: 'Authorization',
@@ -74,6 +80,7 @@ let createUser = {
     },
     unauthorizedError,
     permissionsError,
+    notFoundError,
   ],
 };
 

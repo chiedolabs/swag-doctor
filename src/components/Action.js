@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import { generateID, swagObToJSON } from '../utils/functions';
 import Parameters from './Parameters';
 import jsonString from 'json-string';
+import * as _ from 'lodash';
 
 class Action extends Component{
 
@@ -49,13 +50,21 @@ class Action extends Component{
     // Need to generate the json response output from the json object here
     // so I can use it later.
     let responsesOutput = action.responses.map((response) => {
+      let exampleResponse = swagObToJSON(response.body);
+      let exampleResponseOutput;
+      if(_.isObject(exampleResponse)){
+        exampleResponseOutput = jsonString(exampleResponse);
+      } else {
+        exampleResponseOutput = exampleResponse;
+      }
+
       return (
         <div key={response.status}>
           <h4>{response.name} (status: {response.status})</h4>
           <h5>Fields:</h5>
           <h5>Example:</h5>
           <pre>
-            {`${jsonString(swagObToJSON(response.body))}`}
+            {exampleResponseOutput}
           </pre>
         </div>
       );
