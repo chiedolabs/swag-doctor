@@ -53,7 +53,7 @@ class Action extends Component{
         <div key={response.status}>
           <h4>{response.name} (status: {response.status})</h4>
           <h5>Fields:</h5>
-          <h5>Example</h5>
+          <h5>Example:</h5>
           <pre>
             {`${jsonString(swagObToJSON(response.body))}`}
           </pre>

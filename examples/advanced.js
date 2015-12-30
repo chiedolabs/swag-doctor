@@ -2,9 +2,20 @@
 import ob from 'objob';
 import faker from 'faker';
 
+let book = {
+  'id': { description: '...', resolve: 'ae3432aeb35563245'},
+  'name': {
+    description: '...',
+    resolve: () => {
+      return faker.lorem.sentence();
+    },
+  },
+};
+
 let user = {
   'id': { description: '...', resolve: 'ae3432aeb35563245'},
   'name': { description: '...', resolve: 'Jane Doe'},
+  'age': { description: '...', resolve: 24},
   'email':{
     description:'...',
     resolve: () => {
@@ -13,6 +24,10 @@ let user = {
   },
   'username': { description: '...', resolve: 'janedoe'},
   'password': { description: '...', resolve: 'testtest'},
+  'books': {
+    description: '...',
+    resolve: [book, book, book],
+  },
 };
 
 let unauthorizedError = {
@@ -20,7 +35,7 @@ let unauthorizedError = {
   status: 401,
   body: {
     errors: {
-      unauthorized: 'You are not authorized',
+      resolve: { unauthorized: 'You are not authorized'},
     },
   },
 };
@@ -54,7 +69,7 @@ let createUser = {
       name: 'Success',
       status: 200,
       body: {
-        user: ob(user).with(['id','name', 'email', 'username']),
+        user: { resolve: ob(user).with(['id','name', 'email', 'username', 'books', 'age']) },
       },
     },
     unauthorizedError,
