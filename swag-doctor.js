@@ -18,7 +18,7 @@ if(argv.i && argv.o) {
   let template     = ejs.compile(templateFile);
 
   let html         = template({
-    swagletData: data,
+    swagDocData: data,
     js: 'static/js/react-bundle.js',
     css: 'static/css/style.css',
   });

@@ -1,5 +1,5 @@
 {
-  "name": "swaglet",
+  "name": "swagdoctor",
   "version": "1.0.0",
   "description": "Documentation Generator",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "npm run clean && NODE_ENV=production webpack -p --config webpack.config.prod.js && gulp build",
     "start": "NODE_ENV=development node --harmony server.js",
     "sass-watch": "gulp sass-watch",
-    "update-docs": "node --harmony swaglet.js -i examples/advanced.js -o examples/docs"
+    "update-docs": "node --harmony swag-doctor.js -i examples/advanced.js -o examples/docs"
   },
   "keywords": [
     "Node",
@@ -22,7 +22,7 @@
     "url": "NEED TO ADD"
   },
   "bin": {
-    "goose": "swaglet.js"
+    "swagdoc": "swag-doctor.js"
   },
   "dependencies": {
     "ejs": "^2.3.4",

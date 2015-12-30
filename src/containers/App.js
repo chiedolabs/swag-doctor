@@ -8,7 +8,7 @@ let data;
 if(process.env.NODE_ENV === 'development') {
   data = require('../../examples/advanced');
 } else {
-  data = window.swagletData;
+  data = window.swagDocData;
 }
 
 class App extends Component{
