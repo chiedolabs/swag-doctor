@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import { Button } from 'react-bootstrap';
-import { generateID, swagObToJSON } from '../utils/functions';
+import { generateID, swagObToJSON, swagObToFieldOb } from '../utils/functions';
 import Parameters from './Parameters';
 import jsonString from 'json-string';
 import * as _ from 'lodash';
@@ -61,6 +61,7 @@ class Action extends Component{
 
       let resFields;
       if(_.isObject(resBody)){
+        console.dir(swagObToFieldOb(response.body));
         resFields = (
           <div>
             <h5>Fields:</h5>

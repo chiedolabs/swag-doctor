@@ -54,3 +54,20 @@ let swagObToJSON = function(x){
   return res;
 };
 module.exports.swagObToJSON = swagObToJSON;
+let flatten = function(x){
+  let res = [];
+
+  if(_.isObject(x)){
+
+    for(let i in x) {
+      res.push(x[i]);
+      res = res.concat(flatten(x[i]));
+    }
+  }
+
+  return res;
+};
+
+module.exports.swagObToFieldOb = function(x){
+  return flatten(x);
+}
