@@ -33,7 +33,7 @@ class Action extends Component{
       urlParamsOutput = (
         <div>
           <h4>URL Parameters</h4>
-          <Parameters parameters={urlParams} type={false} />
+          <Parameters parameters={urlParams} displayTypes={false} />
         </div>
       );
     }
@@ -59,7 +59,8 @@ class Action extends Component{
         parsedResBody = resBody;
       }
 
-      let resFields = <Parameters parameters={response.body} />;
+      let resFields;
+      //resFields = <Parameters parameters={response.body} />;
 
       return (
         <div key={response.status}>

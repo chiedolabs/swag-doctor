@@ -7,22 +7,22 @@ class Parameters extends Component{
 
   static propTypes = {
     parameters: PropTypes.object,
-    type: PropTypes.bool,
+    displayTypes: PropTypes.bool,
   };
 
   static defaultProps = {
-    type: true,
+    displayTypes: true,
   }
 
   render(){
-    const { parameters, type } = this.props;
+    const { parameters, displayTypes } = this.props;
     let keys = [];
 
     for(let k in parameters) {
       keys.push(k);
     };
     let parametersOutput = _.map(keys, (key) => {
-      if(type){
+      if(displayTypes){
         return (
           <tr key={key}>
             <td>{key}</td>
@@ -42,7 +42,7 @@ class Parameters extends Component{
 
     let headersOutput;
 
-    if(type){
+    if(displayTypes){
       headersOutput = (
         <tr>
           <th>Field</th>

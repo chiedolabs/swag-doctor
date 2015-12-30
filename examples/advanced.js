@@ -45,7 +45,7 @@ let permissionsError = {
   status: 403,
   body: {
     errors: {
-      unauthorized: 'You do not have permissions to perform this action.',
+      resolve: {unauthorized: 'You do not have permissions to perform this action.'},
     },
   },
 };
