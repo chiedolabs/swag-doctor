@@ -60,12 +60,19 @@ class Action extends Component{
       }
 
       let resFields;
-      //resFields = <Parameters parameters={response.body} />;
+      if(_.isObject(resBody)){
+        resFields = (
+          <div>
+            <h5>Fields:</h5>
+            <Parameters parameters={response.body} />
+          </div>
+        );
+      }
+
 
       return (
         <div key={response.status}>
           <h4>{response.name} (status: {response.status})</h4>
-          <h5>Fields:</h5>
           {resFields}
           <h5>Example:</h5>
           <pre>
