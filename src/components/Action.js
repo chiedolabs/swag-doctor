@@ -50,12 +50,13 @@ class Action extends Component{
     // Need to generate the json response output from the json object here
     // so I can use it later.
     let responsesOutput = action.responses.map((response) => {
-      let exampleResponse = swagObToJSON(response.body);
-      let exampleResponseOutput;
-      if(_.isObject(exampleResponse)){
-        exampleResponseOutput = jsonString(exampleResponse);
+      let resBody = swagObToJSON(response.body);
+      let parsedResBody;
+
+      if(_.isObject(resBody)){
+        parsedResBody = jsonString(resBody);
       } else {
-        exampleResponseOutput = exampleResponse;
+        parsedResBody = resBody;
       }
 
       return (
@@ -64,7 +65,7 @@ class Action extends Component{
           <h5>Fields:</h5>
           <h5>Example:</h5>
           <pre>
-            {exampleResponseOutput}
+            {parsedResBody}
           </pre>
         </div>
       );
