@@ -54,16 +54,20 @@ let swagObToJSON = function(x){
   return res;
 };
 module.exports.swagObToJSON = swagObToJSON;
-let flatten = function(x){
-  let res = [];
+let flatten = function(x, prefix=''){
+  let res = {};
 
   if(_.isObject(x)){
 
     for(let i in x) {
-      let tmp = {};
-      tmp[i] = x[i];
-      res.push(tmp);
-      res = res.concat(flatten(x[i]));
+      if(prefix === '') {
+        prefix = `${i}`;
+      } else {
+        prefix = `${prefix}.${i}`;
+      }
+
+      res[prefix] = x[i];
+      res = {...res, ...flatten(x[i], prefix)};
     }
   }
 
