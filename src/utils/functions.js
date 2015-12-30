@@ -60,7 +60,9 @@ let flatten = function(x){
   if(_.isObject(x)){
 
     for(let i in x) {
-      res.push(x[i]);
+      let tmp = {};
+      tmp[i] = x[i];
+      res.push(tmp);
       res = res.concat(flatten(x[i]));
     }
   }
