@@ -80,6 +80,7 @@ class Action extends Component{
           <pre>
             {parsedResBody}
           </pre>
+          <br/>
         </div>
       );
     });
