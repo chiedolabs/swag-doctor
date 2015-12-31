@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import { Table } from 'react-bootstrap';
 import * as _ from 'lodash';
-import {getType} from '../utils/functions';
 
 class Fields extends Component{
 
@@ -11,7 +10,7 @@ class Fields extends Component{
   };
 
   render(){
-    const { fields } = this.props;
+    const { fields, sourceObject } = this.props;
     let keys = [];
 
     for(let k in fields) {
@@ -28,16 +27,53 @@ class Fields extends Component{
       let type;
 
       if(_.isArray(fields[key])) {
-        type = (typeof fields[key][0]) + '[]'; 
+        type = (typeof fields[key][0]) + '[]';
       } else {
         type = typeof fields[key];
+      }
+
+      let description = '';
+      let source;
+      let count = 1;
+      for(let i of key.split('.')){
+        if(description === '') {
+          source = sourceObject;
+        } else {
+          source = description;
+        }
+
+        if(count === key.split('.').length) {
+          if(source && source[i] && source[i].description){
+            description = source[i].description;
+          } else {
+            description = '';
+          }
+        } else {
+          let subject;
+          if(_.endsWith(i, '[]')) {
+            subject = source[i.replace('[]', '')];
+          } else {
+            subject = source[i];
+          }
+
+          if(_.isFunction(subject.resolve)) {
+            description = subject.resolve();
+          } else {
+            description = subject.resolve;
+          }
+
+          if(_.endsWith(i, '[]')) {
+            description = description[0];
+          }
+        }
+        count++;
       }
 
       return (
         <tr key={key}>
           <td>{indentedKey}</td>
           <td>{type}</td>
-          <td>{fields[key].description}</td>
+          <td>{description}</td>
         </tr>
       );
     });

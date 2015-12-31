@@ -3,9 +3,9 @@ import ob from 'objob';
 import faker from 'faker';
 
 let book = {
-  'id': { description: '...', resolve: 'ae3432aeb35563245'},
+  'id': { description: 'The id', resolve: 'ae3432aeb35563245'},
   'name': {
-    description: '...',
+    description: 'The name',
     resolve: () => {
       return faker.lorem.sentence();
     },
@@ -13,19 +13,19 @@ let book = {
 };
 
 let user = {
-  'id': { description: '...', resolve: 'ae3432aeb35563245'},
-  'name': { description: '...', resolve: 'Jane Doe'},
-  'age': { description: '...', resolve: 24},
+  'id': { description: 'The id', resolve: 'ae3432aeb35563245'},
+  'name': { description: 'The name', resolve: 'Jane Doe'},
+  'age': { description: 'The age', resolve: 24},
   'email':{
-    description:'...',
+    description:'Email address',
     resolve: () => {
       return faker.internet.email();
     },
   },
-  'username': { description: '...', resolve: 'janedoe'},
-  'password': { description: '...', resolve: 'testtest'},
+  'username': { description: 'username', resolve: 'janedoe'},
+  'password': { description: 'password', resolve: 'testtest'},
   'books': {
-    description: '...',
+    description: 'All books',
     resolve: [book, book, book],
   },
 };
@@ -75,7 +75,9 @@ let createUser = {
       name: 'Success',
       status: 200,
       body: {
-        user: { resolve: ob(user).select(['id','name', 'email', 'username', 'books', 'age']) },
+        user: {
+          description: 'The user',
+          resolve: ob(user).select(['id','name', 'email', 'username', 'books', 'age']) },
       },
     },
     unauthorizedError,
