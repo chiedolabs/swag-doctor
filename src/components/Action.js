@@ -1,7 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import { Button } from 'react-bootstrap';
-import { generateID, swagObToJSON, swagObToFieldOb } from '../utils/functions';
+import { generateID, swagObToJSON, flatten } from '../utils/functions';
 import Parameters from './Parameters';
+import Fields from './Fields';
 import jsonString from 'json-string';
 import * as _ from 'lodash';
 
@@ -61,15 +62,15 @@ class Action extends Component{
 
       let resFields;
       if(_.isObject(resBody)){
-        console.dir(swagObToFieldOb(response.body));
+        let flatFields = flatten(swagObToJSON(response.body), '', true);
+
         resFields = (
           <div>
             <h5>Fields:</h5>
-            <Parameters parameters={response.body} />
+            <Fields sourceObject={response.body} fields={flatFields} />
           </div>
         );
       }
-
 
       return (
         <div key={response.status}>

@@ -54,7 +54,8 @@ let swagObToJSON = function(x){
   return res;
 };
 module.exports.swagObToJSON = swagObToJSON;
-let flatten = function(x, prefix=''){
+
+let flatten = function(x, prefix='', shallow=false){
   let res = {};
 
   if(_.isObject(x)){
@@ -72,13 +73,16 @@ let flatten = function(x, prefix=''){
       }
 
       res[tmpPrefix] = x[i];
-      res = {...res, ...flatten(x[i], tmpPrefix)};
+
+      if(_.isArray(x[i]) && shallow) {
+        res = {...res, ...flatten(x[i][0], tmpPrefix, shallow)};
+      } else {
+        res = {...res, ...flatten(x[i], tmpPrefix, shallow)};
+      }
     }
   }
 
   return res;
 };
 
-module.exports.swagObToFieldOb = function(x){
-  return flatten(x);
-};
+module.exports.flatten = flatten;
