@@ -60,14 +60,15 @@ let flatten = function(x, prefix=''){
   if(_.isObject(x)){
 
     for(let i in x) {
+      let tmpPrefix;
       if(prefix === '') {
-        prefix = `${i}`;
+        tmpPrefix = `${i}`;
       } else {
-        prefix = `${prefix}.${i}`;
+        tmpPrefix = `${prefix}.${i}`;
       }
 
-      res[prefix] = x[i];
-      res = {...res, ...flatten(x[i], prefix)};
+      res[tmpPrefix] = x[i];
+      res = {...res, ...flatten(x[i], tmpPrefix)};
     }
   }
 
@@ -76,4 +77,4 @@ let flatten = function(x, prefix=''){
 
 module.exports.swagObToFieldOb = function(x){
   return flatten(x);
-}
+};
