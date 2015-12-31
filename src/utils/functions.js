@@ -67,6 +67,10 @@ let flatten = function(x, prefix=''){
         tmpPrefix = `${prefix}.${i}`;
       }
 
+      if(_.isArray(x[i])) {
+        tmpPrefix = tmpPrefix + '[]';
+      }
+
       res[tmpPrefix] = x[i];
       res = {...res, ...flatten(x[i], tmpPrefix)};
     }
