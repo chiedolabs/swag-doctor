@@ -35,6 +35,7 @@ class Fields extends Component{
       let description = '';
       let source;
       let count = 1;
+
       for(let i of key.split('.')){
         if(description === '') {
           source = sourceObject;
@@ -43,6 +44,7 @@ class Fields extends Component{
         }
 
         if(count === key.split('.').length) {
+          i = i.replace('[]', []);
           if(source && source[i] && source[i].description){
             description = source[i].description;
           } else {
