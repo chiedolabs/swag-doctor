@@ -1,30 +1,54 @@
 import * as _ from 'lodash';
 
-module.exports.generateID = function(x){
+/*
+ * Generates an ID for use on the HTML page, given a string
+ *
+ * @param {string} x The string to convert to an ID
+ * @return {string}
+ */
+export let generateID = function(x){
   return x.replace(/\W+/g, '').toLowerCase();
 };
 
-module.exports.getType = function(field){
-  if(typeof field.resolve === 'function') {
+
+/*
+ * Figures out the type for a given field
+ *
+ * @param {object} field The field object
+ * @param {function|string} field.resolve The value that the field resolves to
+ * @param {string} [field.type] A specified type
+ * @return {string}
+ */
+export let inferType = function(field){
+  if(field.type) {
+    return field.type;
+  } else if(typeof field.resolve === 'function') {
     return typeof field.resolve();
   } else {
     return typeof field.resolve;
   }
 };
 
-let resolveValue = function(x){
+/*
+ * Given a value, resolve it to it's corresponding value from its
+ * resolve function.
+ *
+ * @param {any} x
+ * @return {any}
+ */
+export let resolveValue = function(x){
   let resolution;
 
   if(_.isArray(x)) {
     let y = [];
 
     for(let z of x) {
-      y.push(swagObToJSON(z));
+      y.push(modelToJSON(z));
     }
 
     resolution = y;
   } else if(_.isObject(x)) {
-    resolution = swagObToJSON(x);
+    resolution = modelToJSON(x);
   } else {
     resolution = x;
   };
@@ -32,13 +56,22 @@ let resolveValue = function(x){
   return resolution;
 };
 
-let swagObToJSON = function(x){
+/*
+ * Takes a swag doctor model and convert it to it's corresponing json object.
+ * This uses recursion via resolveValue, so I hope you brought your swag.
+ * @param {any} x
+ * @return {object}
+ */
+export let modelToJSON = function(x){
   let res = {};
 
+  // If x is not an object, this is the base case where it just returns that
+  // value and exits the recursion.
   if(!_.isObject(x)) {
     return x;
   }
 
+  // Recursion logic.
   for(let i in x) {
     if(_.isObject(x[i])) {
       if(_.isFunction(x[i].resolve)) {
@@ -53,36 +86,3 @@ let swagObToJSON = function(x){
 
   return res;
 };
-module.exports.swagObToJSON = swagObToJSON;
-
-let flatten = function(x, prefix='', shallow=false){
-  let res = {};
-
-  if(_.isObject(x)){
-
-    for(let i in x) {
-      let tmpPrefix;
-      if(prefix === '') {
-        tmpPrefix = `${i}`;
-      } else {
-        tmpPrefix = `${prefix}.${i}`;
-      }
-
-      if(_.isArray(x[i])) {
-        tmpPrefix = tmpPrefix + '[]';
-      }
-
-      res[tmpPrefix] = x[i];
-
-      if(_.isArray(x[i]) && shallow) {
-        res = {...res, ...flatten(x[i][0], tmpPrefix, shallow)};
-      } else {
-        res = {...res, ...flatten(x[i], tmpPrefix, shallow)};
-      }
-    }
-  }
-
-  return res;
-};
-
-module.exports.flatten = flatten;

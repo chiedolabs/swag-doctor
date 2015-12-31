@@ -1,10 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import { Button } from 'react-bootstrap';
-import { generateID, swagObToJSON, flatten } from '../utils/functions';
+import { generateID, modelToJSON } from '../utils/functions';
 import Parameters from './Parameters';
 import Fields from './Fields';
 import jsonString from 'json-string';
 import * as _ from 'lodash';
+import ob from 'objob';
 
 class Action extends Component{
 
@@ -51,7 +52,7 @@ class Action extends Component{
     // Need to generate the json response output from the json object here
     // so I can use it later.
     let responsesOutput = action.responses.map((response) => {
-      let resBody = swagObToJSON(response.body);
+      let resBody = modelToJSON(response.body);
       let parsedResBody;
 
       if(_.isObject(resBody)){
@@ -62,7 +63,7 @@ class Action extends Component{
 
       let resFields;
       if(_.isObject(resBody)){
-        let flatFields = flatten(swagObToJSON(response.body), '', true);
+        let flatFields = ob(modelToJSON(response.body)).flatten('', true);
 
         resFields = (
           <div>

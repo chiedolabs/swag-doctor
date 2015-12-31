@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { Table } from 'react-bootstrap';
 import * as _ from 'lodash';
-import {getType} from '../utils/functions';
+import {inferType} from '../utils/functions';
 
 class Parameters extends Component{
 
@@ -18,15 +18,17 @@ class Parameters extends Component{
     const { parameters, displayTypes } = this.props;
     let keys = [];
 
-    for(let k in parameters) {
-      keys.push(k);
+    // Get all parameter keys
+    for(let parameter in parameters) {
+      keys.push(parameter);
     };
+
     let parametersOutput = _.map(keys, (key) => {
       if(displayTypes){
         return (
           <tr key={key}>
             <td>{key}</td>
-            <td>{getType(parameters[key])}</td>
+            <td>{inferType(parameters[key])}</td>
             <td>{parameters[key].description}</td>
           </tr>
         );

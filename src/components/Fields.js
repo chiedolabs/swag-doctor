@@ -13,25 +13,29 @@ class Fields extends Component{
     const { fields, sourceObject } = this.props;
     let keys = [];
 
-    for(let k in fields) {
-      keys.push(k);
+    for(let field in fields) {
+      keys.push(field);
     };
 
     let fieldsOutput = _.map(keys, (key) => {
-      let indentation = key.split('.').length;
+      // Indent the fields that are nested fields
       let padding = 0;
-      for(let i = 0; i < (indentation-1)*2; i++) {
+      for(let i = 0; i < (key.split('.').length -1)*2; i++) {
         padding += 10;
       }
       let indentedKey = <span style={{paddingLeft: padding}}>{key}</span>;
-      let type;
 
+      let type;
+      // For arrays, we'll need to parse the key a little differently since it has the
+      // [] syntax in the key.
       if(_.isArray(fields[key])) {
         type = (typeof fields[key][0]) + '[]';
       } else {
         type = typeof fields[key];
       }
 
+      // Now we need to generate the descriptions using the source object to
+      // do so. It's not clean but works... so far. lol.
       let description = '';
       let source;
       let count = 1;
