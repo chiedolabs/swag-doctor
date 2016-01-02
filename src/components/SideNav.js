@@ -13,7 +13,7 @@ class SideNav extends Component{
   render(){
     const { paths } = this.props;
 
-    let routes = ob(paths).keys();
+    let routes = ob.keys(paths);
 
     let sidenavOutput = _.map(routes, (route) => {
       let subnavOutput = _.map(paths[route].actions, (action) => {

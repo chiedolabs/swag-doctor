@@ -63,7 +63,7 @@ class Action extends Component{
 
       let resFields;
       if(_.isObject(resBody)){
-        let flatFields = ob(modelToJSON(response.body)).flatten();
+        let flatFields = ob.flatten(modelToJSON(response.body));
         let flatFieldsWithoutArrays = {};
         // We need to get rid of the array details before passing it to the
         // fields component

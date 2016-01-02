@@ -1,6 +1,6 @@
 {
   "name": "swagdoctor",
-  "version": "0.0",
+  "version": "0.0.1",
   "description": "Documentation Generator",
   "scripts": {
     "clean": "rimraf dist",
@@ -54,7 +54,7 @@
     "imports-loader": "^0.6.5",
     "json-string": "0.0.1",
     "nodemon": "^1.8.1",
-    "objob": "^1.2.0",
+    "objob": "^2.0.1",
     "react": "^0.14.0",
     "react-addons-test-utils": "^0.14.0",
     "react-bootstrap": "^0.28.1",

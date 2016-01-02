@@ -68,7 +68,7 @@ let createUser = {
   method: 'POST',
   description: 'Allows someone to create a user.',
   params: {
-    body: ob(user).select(['name', 'email', 'username', 'password']),
+    body: ob.select(user, ['name', 'email', 'username', 'password']),
   },
   responses: [
     {
@@ -77,7 +77,7 @@ let createUser = {
       body: {
         user: {
           description: 'The user',
-          resolve: ob(user).select(['id','name', 'email', 'username', 'books', 'age']) },
+          resolve: ob.select(user, ['id','name', 'email', 'username', 'books', 'age']) },
       },
     },
     unauthorizedError,
@@ -90,7 +90,7 @@ let getUser = {
   name: 'Get user',
   method: 'GET',
   params: {
-    url: ob(user).select(['id']),
+    url: ob.select(user, ['id']),
     query: [],
   },
   responses: [],
@@ -101,8 +101,8 @@ let updateUser = {
   name: 'Update user',
   method: 'PUT',
   params: {
-    url: ob(user).select(['id']),
-    body: ob(user).select(['name','email','username']),
+    url: ob.select(user, ['id']),
+    body: ob.select(user, ['name','email','username']),
     query: [],
   },
   responses: [],

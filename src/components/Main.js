@@ -11,7 +11,7 @@ class Main extends Component{
 
   render(){
     const { paths } = this.props;
-    let routes = ob(paths).keys();
+    let routes = ob.keys(paths);
     let pathsOutput = _.map(routes, (route) => {
       return (
         <Path key={route} path={paths[route]} route={route} />
