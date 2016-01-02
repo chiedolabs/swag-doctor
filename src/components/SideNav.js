@@ -2,7 +2,6 @@ import React, {Component, PropTypes} from 'react';
 import * as _ from 'lodash';
 import { Nav, NavItem, Row } from 'react-bootstrap';
 import { generateID } from '../utils/functions';
-import ob from 'objob';
 
 class SideNav extends Component{
 
@@ -13,7 +12,7 @@ class SideNav extends Component{
   render(){
     const { paths } = this.props;
 
-    let routes = ob.keys(paths);
+    let routes = Object.keys(paths);
 
     let sidenavOutput = _.map(routes, (route) => {
       let subnavOutput = _.map(paths[route].actions, (action) => {
