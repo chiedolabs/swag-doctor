@@ -74,8 +74,6 @@ class Action extends Component{
           flatFieldsWithoutArrays[key] = flatFields[originalKey];
         }
 
-        console.dir(flatFieldsWithoutArrays);
-
         resFields = (
           <div>
             <h5>Fields:</h5>
