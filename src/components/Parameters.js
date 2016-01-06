@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import * as _ from 'lodash';
 import {inferType} from '../utils/functions';
 
@@ -24,11 +24,18 @@ class Parameters extends Component{
     };
 
     let parametersOutput = _.map(keys, (key) => {
+      let required;
+      if(parameters[key].optional) {
+        required = <Button bsSize="xsmall">optional</Button>;
+      } else {
+        required = <Button bsStyle="success" bsSize="xsmall">required</Button>;
+      }
+
       if(displayTypes){
         return (
           <tr key={key}>
             <td>{key}</td>
-            <td>{inferType(parameters[key])}</td>
+            <td>{inferType(parameters[key])} {required}</td>
             <td>{parameters[key].description}</td>
           </tr>
         );

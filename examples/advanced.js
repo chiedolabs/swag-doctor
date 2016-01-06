@@ -63,12 +63,16 @@ let tokenHeader = {
   description: 'This token is used to authenticate a user with a request. If it is not attached, there will be no user attached to the request. Note that the token must be prepended with "Bearer: "',
 };
 
+let createUserBody = ob.select(user, ['name', 'email', 'username', 'password']);
+createUserBody.name.optional = true;
+
 let createUser = {
   name: 'Create user',
   method: 'POST',
   description: 'Allows someone to create a user.',
   params: {
-    body: ob.select(user, ['name', 'email', 'username', 'password']),
+    body: createUserBody,
+    optionals: ['books','age'],
   },
   responses: [
     {

@@ -35,7 +35,7 @@ class Action extends Component{
       urlParamsOutput = (
         <div>
           <h4>URL Parameters</h4>
-          <Parameters parameters={urlParams} displayTypes={false} />
+          <Parameters parameters={urlParams} displayTypes={false} optionals={action.params.optionals} />
         </div>
       );
     }
