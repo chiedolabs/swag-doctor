@@ -68,9 +68,10 @@ class Action extends Component{
         // We need to get rid of the array details before passing it to the
         // fields component
         for(let key in flatFields) {
+          let originalKey = key;
           key = key.replace(/(\.\d$)/, '');
           key = key.replace(/(\.\d\.)/, '.');
-          flatFieldsWithoutArrays[key] = flatFields[key];
+          flatFieldsWithoutArrays[key] = flatFields[originalKey];
         }
 
         console.dir(flatFieldsWithoutArrays);
