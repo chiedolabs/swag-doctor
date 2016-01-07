@@ -3,7 +3,7 @@
 A library for generating RESTful API documentation with a json file or JS module that outputs a valid json object.
 
 ## Goals
-The goal of Swag Doctor is to be a much simpler alternative to something like Swagger. The goal is to allow you to do a lot with a little.
+The goal of Swag Doctor is to be a much simpler alternative to something like Swagger while offering you maximum flexibility by accepting a js module as input.
 
 <a href="https://rawgit.com/chiedolabs/swag-doctor/master/examples/docs/index.html" target="_blank">A live example.</a>
 
