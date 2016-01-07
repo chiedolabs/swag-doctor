@@ -16,7 +16,6 @@ if(argv.i && argv.o) {
   let data         = require(`${cwd}/${inputFile}`);
   let templateFile = fs.readFileSync(`${__dirname}/templates/index.ejs`).toString();
   let template     = ejs.compile(templateFile);
-
   let html         = template({
     swagDocData: data,
     js: 'static/js/react-bundle.js',

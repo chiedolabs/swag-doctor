@@ -120,7 +120,7 @@ let updateUser = {
   params: {
     url: ob.pick(user, ['id']),
     body: ob.pick(user, ['name','email','username']),
-    query: [],
+    query: {},
   },
   responses: [],
 };

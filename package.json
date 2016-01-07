@@ -5,9 +5,10 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && NODE_ENV=production webpack -p --config webpack.config.prod.js && gulp build",
+    "prepublish": "npm run build",
     "start": "NODE_ENV=development node --harmony server.js",
     "sass-watch": "gulp sass-watch",
-    "update-docs": "node --harmony swag-doctor.js -i examples/advanced.js -o examples/docs"
+    "update-docs": "NODE_ENV=production node --harmony swag-doctor.js -i examples/advanced.js -o examples/docs"
   },
   "keywords": [
     "Node",
