@@ -19,8 +19,10 @@ class Action extends Component{
 
     let bodyParams;
     let urlParams;
+    let queryParams;
     let bodyParamsOutput;
     let urlParamsOutput;
+    let queryParamsOutput;
     let contentOutput;
     let headersOutput;
 
@@ -38,6 +40,10 @@ class Action extends Component{
       if(action.params.url) {
         urlParams = action.params.url;
       }
+
+      if(action.params.query) {
+        queryParams = action.params.query;
+      }
     }
 
     if(urlParams){
@@ -45,6 +51,15 @@ class Action extends Component{
         <div>
           <h4>URL Parameters</h4>
           <Parameters parameters={urlParams} displayTypes={false} />
+        </div>
+      );
+    }
+
+    if(queryParams){
+      queryParamsOutput = (
+        <div>
+          <h4>Query Parameters</h4>
+          <Parameters parameters={queryParams} displayTypes={false} />
         </div>
       );
     }
@@ -151,6 +166,7 @@ class Action extends Component{
         {condContentOutput}
         {condHeadersOutput}
         {urlParamsOutput}
+        {queryParamsOutput}
         {bodyParamsOutput}
         <div>
           {responsesOutput}

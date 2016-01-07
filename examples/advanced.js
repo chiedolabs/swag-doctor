@@ -94,7 +94,16 @@ let getUser = {
   method: 'GET',
   params: {
     url: ob.pick(user, ['id']),
-    query: [],
+    query: {
+      misc: {
+        resolve: 'hello',
+        description: 'Just an example query parameter',
+      },
+      misc2: {
+        resolve: 'world',
+        description: 'Another example query parameter',
+      },
+    },
   },
   responses: [],
   headers: [ tokenHeader ],
