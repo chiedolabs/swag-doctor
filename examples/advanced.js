@@ -64,13 +64,14 @@ let tokenHeader = {
 
 let createUserBody = ob.pick(user, ['name', 'email', 'username', 'password', 'books']);
 createUserBody.name.optional = true;
+user.name.optional = false;
 
 let createUser = {
   name: 'Create user',
   method: 'POST',
   description: 'Allows someone to create a user.',
   params: {
-    body: createUserBody,
+    body: {user: {resolve: createUserBody}},
   },
   responses: [
     {
