@@ -18,7 +18,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "NEED TO ADD"
+    "url": "https://github.com/chiedolabs/swag-doctor"
   },
   "bin": {
     "swagdoc": "swag-doctor.js"
