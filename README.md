@@ -1,5 +1,4 @@
 # Swag Doctor (Beta)
--
 
 A library for generating RESTful API documentation with a json file or JS module that outputs a valid json object.
 
