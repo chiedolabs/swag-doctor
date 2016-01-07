@@ -99,6 +99,11 @@ let getUser = {
   },
   responses: [],
   headers: [ tokenHeader ],
+  content: `
+    <p>
+    When you get a user, XYZ.
+    </p>
+  `,
 };
 
 let updateUser = {
@@ -118,6 +123,12 @@ module.exports = {
   paths: {
     '/users': {
       actions: [ createUser ],
+      content: `
+        <h4>Stuff</h4>
+        <p>
+        Groovy
+        </p>
+      `,
     },
     '/users/:id': {
       actions: [ getUser, updateUser ],

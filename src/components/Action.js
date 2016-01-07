@@ -20,6 +20,7 @@ class Action extends Component{
     let urlParams;
     let bodyParamsOutput;
     let urlParamsOutput;
+    let contentOutput;
 
     if(action.params){
       if(action.params.body) {
@@ -46,6 +47,12 @@ class Action extends Component{
           <h4>Body Parameters</h4>
           <Parameters parameters={bodyParams} />
         </div>
+      );
+    }
+
+    if(action.content) {
+      contentOutput = (
+        <div dangerouslySetInnerHTML={{__html: action.content}} />
       );
     }
 
@@ -102,6 +109,8 @@ class Action extends Component{
         <h3 id={`${generateID(action.name)}`}>
           &nbsp;{action.name}
         </h3>
+        <br/>
+        {contentOutput}
         <br/>
         {urlParamsOutput}
         {bodyParamsOutput}
