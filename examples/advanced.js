@@ -57,10 +57,9 @@ let notFoundError = {
 };
 
 let tokenHeader = {
-  name: 'Authentication Token',
-  header: 'Authorization',
-  value: 'Bearer: 3838473948',
+  key: 'Authorization',
   description: 'This token is used to authenticate a user with a request. If it is not attached, there will be no user attached to the request. Note that the token must be prepended with "Bearer: "',
+  resolve: 'Bearer: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI',
 };
 
 let createUserBody = ob.select(user, ['name', 'email', 'username', 'password']);
