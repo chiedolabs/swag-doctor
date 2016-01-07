@@ -31,3 +31,8 @@ h1, h2 {
 .url-path {
   background: #000000; color: #ffffff; padding: 10px; @include border-radius(5px);
 }
+
+@media only screen and (max-width : 1200px) {
+  .side-nav { display: none; }
+  .viewer { margin-left: 0; width: 100%; }
+}
