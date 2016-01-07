@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import { Button } from 'react-bootstrap';
 import { generateID, modelToJSON } from '../utils/functions';
 import Parameters from './Parameters';
-import Header from './Header';
+import Headers from './Headers';
 import Fields from './Fields';
 import jsonString from 'json-string';
 import * as _ from 'lodash';
@@ -25,11 +25,9 @@ class Action extends Component{
     let headersOutput;
 
     if(action.headers) {
-      headersOutput = action.headers.map((header) => {
-        return (
-          <Header header={header} key={action.headers.indexOf(header)} />
-        );
-      });
+      headersOutput = (
+        <Headers headers={action.headers} />
+      );
     }
 
     if(action.params){
