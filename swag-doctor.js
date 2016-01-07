@@ -6,6 +6,7 @@ let _      = require('lodash');
 let fs     = require('fs');
 let ncp    = require('ncp').ncp;
 let ejs    = require('ejs');
+let ob     = require('objob');
 
 if(argv.i && argv.o) {
   // Get the execution directory
@@ -16,6 +17,15 @@ if(argv.i && argv.o) {
   let data         = require(`${cwd}/${inputFile}`);
   let templateFile = fs.readFileSync(`${__dirname}/templates/index.ejs`).toString();
   let template     = ejs.compile(templateFile);
+  // We need to make sure all the functions are evaluated
+  data = ob.mapValues(data, (x) => {
+    if(typeof x === 'function') {
+      return x();
+    } else {
+      return x;
+    }
+  });
+
   let html         = template({
     swagDocData: data,
     js: 'static/js/react-bundle.js',

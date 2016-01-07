@@ -92,49 +92,52 @@ class Action extends Component{
 
     // Need to generate the json response output from the json object here
     // so I can use it later.
-    let responsesOutput = action.responses.map((response) => {
-      let resBody = modelToJSON(response.body);
-      let parsedResBody;
+    let responsesOutput;
+    if(action.responses) {
+      responsesOutput = action.responses.map((response) => {
+        let resBody = modelToJSON(response.body);
+        let parsedResBody;
 
-      if(_.isObject(resBody)){
-        parsedResBody = jsonString(resBody);
-      } else {
-        parsedResBody = resBody;
-      }
-
-      let resFields;
-      if(_.isObject(resBody)){
-        let flatFields = ob.flatten(modelToJSON(response.body));
-        let flatFieldsWithoutArrays = {};
-        // We need to get rid of the array details before passing it to the
-        // fields component
-        for(let key in flatFields) {
-          let originalKey = key;
-          key = key.replace(/(\.\d$)/, '');
-          key = key.replace(/(\.\d\.)/, '.');
-          flatFieldsWithoutArrays[key] = flatFields[originalKey];
+        if(_.isObject(resBody)){
+          parsedResBody = jsonString(resBody);
+        } else {
+          parsedResBody = resBody;
         }
 
-        resFields = (
-          <div>
-            <h5>Fields:</h5>
-            <Fields sourceObject={response.body} fields={flatFieldsWithoutArrays} />
+        let resFields;
+        if(_.isObject(resBody)){
+          let flatFields = ob.flatten(modelToJSON(response.body));
+          let flatFieldsWithoutArrays = {};
+          // We need to get rid of the array details before passing it to the
+          // fields component
+          for(let key in flatFields) {
+            let originalKey = key;
+            key = key.replace(/(\.\d$)/, '');
+            key = key.replace(/(\.\d\.)/, '.');
+            flatFieldsWithoutArrays[key] = flatFields[originalKey];
+          }
+
+          resFields = (
+            <div>
+              <h5>Fields:</h5>
+              <Fields sourceObject={response.body} fields={flatFieldsWithoutArrays} />
+            </div>
+          );
+        }
+
+        return (
+          <div key={response.status}>
+            <h4>{response.name} (status: {response.status})</h4>
+            {resFields}
+            <h5>Example:</h5>
+            <pre>
+              {parsedResBody}
+            </pre>
+            <br/>
           </div>
         );
-      }
-
-      return (
-        <div key={response.status}>
-          <h4>{response.name} (status: {response.status})</h4>
-          {resFields}
-          <h5>Example:</h5>
-          <pre>
-            {parsedResBody}
-          </pre>
-          <br/>
-        </div>
-      );
-    });
+      });
+    }
 
     let condHeadersOutput;
     if(headersOutput) {
