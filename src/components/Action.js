@@ -44,16 +44,27 @@ class Action extends Component{
       urlParamsOutput = (
         <div>
           <h4>URL Parameters</h4>
-          <Parameters parameters={urlParams} displayTypes={false} optionals={action.params.optionals} />
+          <Parameters parameters={urlParams} displayTypes={false} />
         </div>
       );
     }
 
-    if(bodyParams){
+    if(_.isObject(bodyParams)){
+      let flatFields = ob.flatten(modelToJSON(bodyParams));
+      let flatFieldsWithoutArrays = {};
+      // We need to get rid of the array details before passing it to the
+      // fields component
+      for(let key in flatFields) {
+        let originalKey = key;
+        key = key.replace(/(\.\d$)/, '');
+        key = key.replace(/(\.\d\.)/, '.');
+        flatFieldsWithoutArrays[key] = flatFields[originalKey];
+      }
+
       bodyParamsOutput = (
         <div>
-          <h4>Body Parameters</h4>
-          <Parameters parameters={bodyParams} />
+          <h4>Params:</h4>
+          <Fields sourceObject={bodyParams} fields={flatFieldsWithoutArrays} />
         </div>
       );
     }

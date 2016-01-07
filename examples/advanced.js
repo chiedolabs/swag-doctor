@@ -62,7 +62,7 @@ let tokenHeader = {
   resolve: 'Bearer: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI',
 };
 
-let createUserBody = ob.select(user, ['name', 'email', 'username', 'password']);
+let createUserBody = ob.pick(user, ['name', 'email', 'username', 'password', 'books']);
 createUserBody.name.optional = true;
 
 let createUser = {
@@ -71,7 +71,6 @@ let createUser = {
   description: 'Allows someone to create a user.',
   params: {
     body: createUserBody,
-    optionals: ['books','age'],
   },
   responses: [
     {
@@ -80,7 +79,7 @@ let createUser = {
       body: {
         user: {
           description: 'The user',
-          resolve: ob.select(user, ['id','name', 'email', 'username', 'books', 'age']) },
+          resolve: ob.pick(user, ['id','name', 'email', 'username', 'books', 'age']) },
       },
     },
     unauthorizedError,
@@ -93,7 +92,7 @@ let getUser = {
   name: 'Get user',
   method: 'GET',
   params: {
-    url: ob.select(user, ['id']),
+    url: ob.pick(user, ['id']),
     query: [],
   },
   responses: [],
@@ -109,8 +108,8 @@ let updateUser = {
   name: 'Update user',
   method: 'PUT',
   params: {
-    url: ob.select(user, ['id']),
-    body: ob.select(user, ['name','email','username']),
+    url: ob.pick(user, ['id']),
+    body: ob.pick(user, ['name','email','username']),
     query: [],
   },
   responses: [],

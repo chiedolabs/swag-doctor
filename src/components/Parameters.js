@@ -12,7 +12,7 @@ class Parameters extends Component{
 
   static defaultProps = {
     displayTypes: true,
-  }
+  };
 
   render(){
     const { parameters, displayTypes } = this.props;
@@ -27,8 +27,6 @@ class Parameters extends Component{
       let required;
       if(parameters[key].optional) {
         required = <Button bsSize="xsmall">optional</Button>;
-      } else {
-        required = <Button bsStyle="success" bsSize="xsmall">required</Button>;
       }
 
       if(displayTypes){

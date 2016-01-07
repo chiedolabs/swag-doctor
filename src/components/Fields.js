@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import * as _ from 'lodash';
 
 class Fields extends Component{
@@ -25,6 +25,7 @@ class Fields extends Component{
       }
       let indentedKey = <span style={{paddingLeft: padding}}>{key}</span>;
 
+
       let type;
       // For arrays, we'll need to parse the key a little differently since it has the
       // [] syntax in the key.
@@ -39,6 +40,7 @@ class Fields extends Component{
       let description = '';
       let source;
       let count = 1;
+      let required;
 
       for(let i of key.split('.')){
         if(description === '') {
@@ -51,11 +53,15 @@ class Fields extends Component{
           i = i.replace('[]', []);
           if(source && source[i] && source[i].description){
             description = source[i].description;
+            if(source[i].optional) {
+              required = <Button bsSize="xsmall">optional</Button>;
+            }
           } else {
             description = '';
           }
         } else {
           let subject;
+
           if(_.endsWith(i, '[]')) {
             subject = source[i.replace('[]', '')];
           } else {
@@ -71,6 +77,10 @@ class Fields extends Component{
           if(_.endsWith(i, '[]')) {
             description = description[0];
           }
+
+          if(subject.optional) {
+            required = <Button bsSize="xsmall">optional</Button>;
+          }
         }
         count++;
       }
@@ -78,7 +88,7 @@ class Fields extends Component{
       return (
         <tr key={key}>
           <td>{indentedKey}</td>
-          <td>{type}</td>
+          <td>{type} {required}</td>
           <td>{description}</td>
         </tr>
       );
