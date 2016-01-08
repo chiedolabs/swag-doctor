@@ -10,6 +10,7 @@ To help you learn how Swag Doctor works, we're going to start creating API docum
 1. [Creating Actions](#creating-actions)
 1. [Specifying Parameters](#specifying-parameters)
 1. [Defining Responses](#defining-responses)
+1. [Defining Headers](#defining-headers)
 1. [A Complete Basic json Example](./examples/basic.json) 
 1. [A Complete Advanced js module Example](./examples/advanced.js) 
 
@@ -162,4 +163,66 @@ There are three types of parameters you can specify, url parameters, body parame
 4. Now, let's add some responses.
 
 ### <a name="defining-responses">Defining Responses</a>
+1. Let's create two responses, a ```404``` response and a ```200``` response for the ```update``` action in the ```/posts/:id``` path.
 
+	```
+	...
+    "responses":[
+        {
+            "name":"Not found Response",
+            "status":404,
+            "body":"Not found"
+        },
+        {
+            "name":"Success Response",
+            "status":200,
+            "body":{
+                "user":{
+                    "description":"The user",
+                    "example":{
+                        "post":{
+                            "example":{
+                                "title":{
+                                    "example":"I love chicken.",
+                                    "description":"The post title"
+                                },
+                                "tags":{
+                                    "example":[
+                                        "chicken",
+                                        "love"
+                                    ],
+                                    "description":"All of the tags for a post"
+                                }
+                            },
+                            "description":"Data to update on the post"
+                        }
+                    }
+                }
+            }
+        }
+    ]
+	...
+	```
+	
+	>Note that types are automatically inferred from your example value and you get a response example as well as tabular information all from the above. This helps to limit repetition. When you use a JS module to create your docs, you can share a lot of the same code between your responses and paramaters. It's quite a time saver and helps reduce errors.
+	
+2. Lastly, we can't forget headers.
+
+### <a name="defining-headers">Defining Headers</a>
+
+1. Defining headers for an action is easy. Lets create a header for Authorization on the ```update``` action for ```/posts/:id```
+
+	```
+	...
+	"headers": [
+	{
+		"key": "Authorization",
+		"description": "This token is used to authenticate a user with a request. If it is not attached, there will be no user attached to the request. Note that the token must be prepended with 'Bearer: '",
+		"example": "Bearer: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI"
+		}
+	]
+	```
+	
+### You're now a pro.
+1. [Checkout the completed example](./examples/basic.json) 
+1. [Checkout a complete Advanced example using a js module](./examples/advanced.js) 

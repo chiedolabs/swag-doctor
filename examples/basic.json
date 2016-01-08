@@ -40,7 +40,45 @@
                 "description": "The number of comments to return if comments are being returned."
               }
             }
-          }
+          },
+          "responses": [
+            {
+              "name": "Not found Response",
+              "status": 404,
+              "body": "Not found"
+            },
+            {
+              "name": "Success Response",
+              "status": 200,
+              "body": {
+                "user": {
+                  "description": "The user",
+                  "example": {
+                    "post": {
+                      "example": {
+                        "title": {
+                          "example": "I love chicken.",
+                          "description": "The post title"
+                        },
+                        "tags": {
+                          "example": ["chicken","love"],
+                          "description": "All of the tags for a post"
+                        }
+                      },
+                      "description": "Data to update on the post"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "headers": [
+            {
+              "key": "Authorization",
+              "description": "This token is used to authenticate a user with a request. If it is not attached, there will be no user attached to the request. Note that the token must be prepended with 'Bearer: '",
+              "example": "Bearer: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI"
+            }
+          ]
         },
         {
           "name": "Delete",
