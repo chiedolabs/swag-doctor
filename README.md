@@ -1,9 +1,18 @@
 # Swag Doctor (Beta)
 
-A library for generating RESTful API documentation with a json file or JS module that outputs a valid json object.
+A library for generating RESTful API documentation with <b>a json file or JS module</b> that outputs a valid json object.
+
+By allowing you to use a js module as input, you can remove redundancy in your API documentation input file.
+
+### Key freebies
+- Type inference
+- Automatic examples based on your schema
+- Swag
+
+[Getting started in 5 minutes](./GETTING-STARTED.md)
 
 ## Goals
-The goal of Swag Doctor is to be a much simpler alternative to something like Swagger while offering you maximum flexibility by accepting a js module as input.
+The goal of Swag Doctor is to be a much simpler alternative to something like Swagger while offering you maximum flexibility by having the option to accept a JS module as input and reducing code duplication. [see the following example](./examples/advanced.js).
 
 <a href="https://rawgit.com/chiedolabs/swag-doctor/master/examples/docs/index.html" target="_blank">A live example.</a>
 
@@ -13,69 +22,13 @@ The goal of Swag Doctor is to be a much simpler alternative to something like Sw
 ## Usage
   	swagdoc -i {source file} -o {output directory}
 
-## Example source files
-###Basic Example (basic.json)
-```js
-{
-  "name":"Example API Documentation",
-  "description":"This is an example of the documentation you can create with Swag Doctor",
-  "paths":{
-    "/users/:id":{
-      "actions":[
-        {
-          "name":"Get user",
-          "method":"GET",
-          "params":{
-            "url":{
-              "id":{
-                "description":"The user's ID",
-                "resolve":"1"
-              }
-            },
-            content: '<p>The params for a user</p>',
-          },
-          "headers":[
-            {
-              "key":"Authorization",
-              "resolve":"Bearer: 3838473948",
-              "description":"This token is used to authenticate a user with a request. If it is not attached, there will be no user attached to the request. Note that the token must be prepended with \"Bearer: \""
-            }
-          ]
-        },
-        {
-          "name":"Update user",
-          "method":"PUT",
-          "params":{
-            "url":{
-              "id":{
-                "description":"The user's ID",
-                "resolve":"1"
-              }
-            },
-            "body":{
-              "name":{
-                "description":"The user's name",
-                "resolve":"Jane Doe"
-              },
-              "username":{
-                "description":"The user's username",
-                "resolve":"janedoe"
-              }
-            }
-          }
-        }
-      ]
-    }
-  }
-}
-```
 
-### Advanced Example (advanced.js):
+## Advanced Example (advanced.js):
 For an advanced example, using a JS module instead of a json file to prevent code duplication, etc. [see the following](./examples/advanced.js).
 
 ## Further Reading
 
-  * [Documentation]()
+  * [Getting Started](./GETTING-STARTED.md)
   * [Changelog](./CHANGELOG.md)
   * [Contributing](./CONTRIBUTING.md)
 
