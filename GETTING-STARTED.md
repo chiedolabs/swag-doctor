@@ -108,11 +108,9 @@ There are three types of parameters you can specify, url parameters, body parame
       "params": {
         "query": {
           "comments": {
-            "resolve": true,
             "description": "Boolean for whether or not comments should be returned with the response"
           },
           "comments_limit": {
-            "resolve": "10",
             "description": "The number of comments to return if comments are being returned."
           }
         }
