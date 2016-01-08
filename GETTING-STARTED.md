@@ -70,7 +70,7 @@ To help you learn how Swag Doctor works, we're going to start creating API docum
 4. Now that we've got some descriptve content, let's add the meat. The actions.
 
 ### <a name="creating-actions">Creating Actions</a>
-1. ```actions``` is an array in your path object. Let's add an action for creating a post and another for deleting a post to ```/posts/:id```
+1. ```actions``` is an array in your path object. Let's add an action for updating a post and another for deleting a post to ```/posts/:id```
 
 	```
 	...
@@ -78,7 +78,7 @@ To help you learn how Swag Doctor works, we're going to start creating API docum
       "actions": [
         {
           "name": "Update post",
-          "method": "POST",
+          "method": "PUT",
           "description": "Allows someone to update a post."
         },
         {

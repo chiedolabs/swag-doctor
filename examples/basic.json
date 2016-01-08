@@ -9,7 +9,7 @@
       "actions": [
         {
           "name": "Update post",
-          "method": "POST",
+          "method": "PUT",
           "description": "Allows someone to update a post."
         },
         {
