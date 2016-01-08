@@ -18,19 +18,19 @@ class Header extends Component{
     }
 
     let exampleOutput;
-    if (header.resolve) {
-      let resolve;
-      if(typeof header.resolve === 'function') {
-        resolve = header.resolve();
+    if (header.example) {
+      let example;
+      if(typeof header.example === 'function') {
+        example = header.example();
       } else {
-        resolve = header.resolve;
+        example = header.example;
       }
 
       exampleOutput = (
         <div>
           <h5>Example:</h5>
           <pre className="prettyprint">
-            <strong>{header.key}:</strong> {resolve}
+            <strong>{header.key}:</strong> {example}
           </pre>
         </div>
       );

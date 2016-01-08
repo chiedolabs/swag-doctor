@@ -15,28 +15,28 @@ export let generateID = function(x){
  * Figures out the type for a given field
  *
  * @param {object} field The field object
- * @param {function|string} field.resolve The value that the field resolves to
+ * @param {function|string} field.example The value that the field examples to
  * @param {string} [field.type] A specified type
  * @return {string}
  */
 export let inferType = function(field){
   if(field.type) {
     return field.type;
-  } else if(typeof field.resolve === 'function') {
-    return typeof field.resolve();
+  } else if(typeof field.example === 'function') {
+    return typeof field.example();
   } else {
-    return typeof field.resolve;
+    return typeof field.example;
   }
 };
 
 /*
- * Given a value, resolve it to it's corresponding value from its
- * resolve function.
+ * Given a value, example it to it's corresponding value from its
+ * example function.
  *
  * @param {any} x
  * @return {any}
  */
-export let resolveValue = function(x){
+export let exampleValue = function(x){
   let resolution;
 
   if(_.isArray(x)) {
@@ -58,7 +58,7 @@ export let resolveValue = function(x){
 
 /*
  * Takes a swag doctor model and convert it to it's corresponing json object.
- * This uses recursion via resolveValue, so I hope you brought your swag.
+ * This uses recursion via exampleValue, so I hope you brought your swag.
  * @param {any} x
  * @return {object}
  */
@@ -74,10 +74,10 @@ export let modelToJSON = function(x){
   // Recursion logic.
   for(let i in x) {
     if(_.isObject(x[i])) {
-      if(_.isFunction(x[i].resolve)) {
-        res[i] = resolveValue(x[i].resolve());
+      if(_.isFunction(x[i].example)) {
+        res[i] = exampleValue(x[i].example());
       }  else {
-        res[i] = resolveValue(x[i].resolve);
+        res[i] = exampleValue(x[i].example);
       }
     } else {
       res[i] = x[i];

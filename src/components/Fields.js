@@ -68,10 +68,10 @@ class Fields extends Component{
             subject = source[i];
           }
 
-          if(_.isFunction(subject.resolve)) {
-            description = subject.resolve();
+          if(_.isFunction(subject.example)) {
+            description = subject.example();
           } else {
-            description = subject.resolve;
+            description = subject.example;
           }
 
           if(_.endsWith(i, '[]')) {

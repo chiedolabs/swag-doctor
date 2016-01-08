@@ -3,30 +3,30 @@ import ob from 'objob';
 import faker from 'faker';
 
 let book = {
-  'id': { description: 'The id', resolve: 'ae3432aeb35563245'},
+  'id': { description: 'The id', example: 'ae3432aeb35563245'},
   'name': {
     description: 'The name',
-    resolve: () => {
+    example: () => {
       return faker.lorem.sentence();
     },
   },
 };
 
 let user = {
-  'id': { description: 'The id', resolve: 'ae3432aeb35563245'},
-  'name': { description: 'The name', resolve: 'Jane Doe'},
-  'age': { description: 'The age', resolve: 24},
+  'id': { description: 'The id', example: 'ae3432aeb35563245'},
+  'name': { description: 'The name', example: 'Jane Doe'},
+  'age': { description: 'The age', example: 24},
   'email':{
     description:'Email address',
-    resolve: () => {
+    example: () => {
       return faker.internet.email();
     },
   },
-  'username': { description: 'username', resolve: 'janedoe'},
-  'password': { description: 'password', resolve: 'testtest'},
+  'username': { description: 'username', example: 'janedoe'},
+  'password': { description: 'password', example: 'testtest'},
   'books': {
     description: 'All books',
-    resolve: [book, book, book],
+    example: [book, book, book],
   },
 };
 
@@ -35,7 +35,7 @@ let unauthorizedError = {
   status: 401,
   body: {
     errors: {
-      resolve: { unauthorized: 'You are not authorized'},
+      example: { unauthorized: 'You are not authorized'},
     },
   },
 };
@@ -45,7 +45,7 @@ let permissionsError = {
   status: 403,
   body: {
     errors: {
-      resolve: {unauthorized: 'You do not have permissions to perform this action.'},
+      example: {unauthorized: 'You do not have permissions to perform this action.'},
     },
   },
 };
@@ -59,7 +59,7 @@ let notFoundError = {
 let tokenHeader = {
   key: 'Authorization',
   description: 'This token is used to authenticate a user with a request. If it is not attached, there will be no user attached to the request. Note that the token must be prepended with "Bearer: "',
-  resolve: 'Bearer: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI',
+  example: 'Bearer: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI',
 };
 
 let createUserBody = ob.pick(user, ['name', 'email', 'username', 'password', 'books']);
@@ -71,7 +71,7 @@ let createUser = {
   method: 'POST',
   description: 'Allows someone to create a user.',
   params: {
-    body: {user: {resolve: createUserBody}},
+    body: {user: {example: createUserBody}},
   },
   responses: [
     {
@@ -80,7 +80,7 @@ let createUser = {
       body: {
         user: {
           description: 'The user',
-          resolve: ob.pick(user, ['id','name', 'email', 'username', 'books', 'age']) },
+          example: ob.pick(user, ['id','name', 'email', 'username', 'books', 'age']) },
       },
     },
     unauthorizedError,
@@ -96,11 +96,9 @@ let getUser = {
     url: ob.pick(user, ['id']),
     query: {
       misc: {
-        resolve: 'hello',
         description: 'Just an example query parameter',
       },
       misc2: {
-        resolve: 'world',
         description: 'Another example query parameter',
       },
     },
