@@ -8,6 +8,7 @@ To help you learn how Swag Doctor works, we're going to start creating API docum
 1. [Creating Paths](#creating-paths)
 1. [Describing Your Paths](#describing-your-paths)
 1. [Creating Actions](#creating-actions)
+1. [Specifying Parameters](#specifying-parameters)
 1. [A Complete Basic json Example](./examples/basic.json) 
 1. [A Complete Advanced js module Example](./examples/advanced.js) 
 
@@ -89,3 +90,33 @@ To help you learn how Swag Doctor works, we're going to start creating API docum
       ]
 	},
 	...
+	```
+	
+2. OK, so now that we've got a couple of actions, how do we specify what parameters it can accept? Let's add some parameters.
+
+### <a name="specifying-parameters">Specifying Parameters</a>
+There are three types of parameters you can specify, url parameters, body parameters and query parameters.
+
+> Note there may be some confusion in regards to the difference between a URL parameter and a query parameter. Take the following example /posts/:id/?comments=true&comments_limit=10. ```comments``` and ```comments_limit``` are query parameters. ```id``` is a URL parameter. 
+
+1. Lets create a key called ```params``` in our ```update``` action.
+
+	```
+	...
+    {
+	  ...
+      "params": {
+        "query": {
+          "comments": {
+            "resolve": true,
+            "description": "Boolean for whether or not comments should be returned with the response"
+          },
+          "comments_limit": {
+            "resolve": "10",
+            "description": "The number of comments to return if comments are being returned."
+          }
+        }
+      }
+    }
+	...
+	```

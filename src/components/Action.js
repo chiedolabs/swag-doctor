@@ -78,7 +78,7 @@ class Action extends Component{
 
       bodyParamsOutput = (
         <div>
-          <h4>Params:</h4>
+          <h4>Body Parameters:</h4>
           <Fields sourceObject={bodyParams} fields={flatFieldsWithoutArrays} />
         </div>
       );
