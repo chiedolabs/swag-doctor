@@ -8,7 +8,8 @@ To help you learn how Swag Doctor works, we're going to start creating API docum
 1. [Creating Paths](#creating-paths)
 1. [Describing Your Paths](#describing-your-paths)
 1. [Creating Actions](#creating-actions)
-1. [A Complete Example](./examples/basic.json) 
+1. [A Complete Basic json Example](./examples/basic.json) 
+1. [A Complete Advanced js module Example](./examples/advanced.js) 
 
 ### <a name="install-swagdoc">Install Swag Doctor</a>
 	npm install -g swagdoc
