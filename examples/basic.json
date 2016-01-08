@@ -13,8 +13,24 @@
           "description": "Allows someone to update a post.",
           "params": {
             "body": {
+              "post": {
+                "example": {
+                  "title": {
+                    "example": "I love chicken.",
+                    "description": "The post title"
+                  },
+                  "tags": {
+                    "example": ["chicken","love"],
+                    "description": "All of the tags for a post"
+                  }
+                },
+                "description": "Data to update on the post"
+              }
             },
             "url": {
+              "id": {
+                "description": "The ID of the post you want to update."
+              }
             },
             "query": {
               "comments": {

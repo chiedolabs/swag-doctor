@@ -9,6 +9,7 @@ To help you learn how Swag Doctor works, we're going to start creating API docum
 1. [Describing Your Paths](#describing-your-paths)
 1. [Creating Actions](#creating-actions)
 1. [Specifying Parameters](#specifying-parameters)
+1. [Defining Responses](#defining-responses)
 1. [A Complete Basic json Example](./examples/basic.json) 
 1. [A Complete Advanced js module Example](./examples/advanced.js) 
 
@@ -97,24 +98,68 @@ To help you learn how Swag Doctor works, we're going to start creating API docum
 ### <a name="specifying-parameters">Specifying Parameters</a>
 There are three types of parameters you can specify, url parameters, body parameters and query parameters.
 
-> Note there may be some confusion in regards to the difference between a URL parameter and a query parameter. Take the following example /posts/:id/?comments=true&comments_limit=10. ```comments``` and ```comments_limit``` are query parameters. ```id``` is a URL parameter. 
-
-1. Lets create a key called ```params``` in our ```update``` action.
+1. Lets create a key called ```params``` in our ```update``` action and lets give make the ```params``` key an object. Add a key in the ```params``` object by the name of ```query```. This is how we will specify our query parameters.
 
 	```
 	...
-    {
-	  ...
-      "params": {
-        "query": {
-          "comments": {
-            "description": "Boolean for whether or not comments should be returned with the response"
-          },
-          "comments_limit": {
-            "description": "The number of comments to return if comments are being returned."
-          }
-        }
-      }
-    }
+  	"params": {
+    	"query": {
+      		"comments": {
+        		"description": "Boolean for whether or not comments should be returned with the response"
+      		},
+      		"comments_limit": {
+        		"description": "The number of comments to return if comments are being returned."
+      		}
+    	}
+  	}
 	...
 	```
+	>Note there may be some confusion in regards to the difference between a URL parameter and a query parameter. Take the following example /posts/:id/?comments=true&comments_limit=10. ```comments``` and ```comments_limit``` are query parameters. ```id``` is a URL parameter. 
+	
+2. Now let's add a key in the ```params``` object by the name of ```url```. This is how we will specify our url parameters.
+
+	```
+  	...
+ 	"params": {
+ 		...
+   		"url": {
+      		"id": {
+      			"description": "The ID of the post you want to update."
+      		}
+    	}
+ 	}
+	...
+	```
+		
+3. Now let's add a key in the ```params``` object by the name of ```body```. This is how we will specify our body parameters.
+
+	```
+  	...
+ 	"params": {
+ 		...
+ 		"body": {
+ 			"post": {
+ 				"example": {
+ 					"title": {
+ 						"example": "I love chicken.",
+ 						"description": "The post title"
+ 					},
+ 					"tags": {
+ 						"example": ["chicken","love"],
+ 						"description": "All of the tags for a post"
+ 					}
+ 				},
+ 				"description": "Data to update on the post"
+ 			}
+ 		}
+ 	}
+ 	...
+ 	```
+ 	
+ 	
+	>This is probably the only gotcha for Swagdoc. You'll notice that you'll need to represent each nested layer of your objects as inside an `example` key. When you generate the example below, it should make sense. The reasoning for this is that we need a level where we can define descriptions.
+	
+4. Now, let's add some responses.
+
+### <a name="defining-responses">Defining Responses</a>
+
