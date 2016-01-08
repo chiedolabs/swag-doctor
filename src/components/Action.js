@@ -23,7 +23,7 @@ class Action extends Component{
     let bodyParamsOutput;
     let urlParamsOutput;
     let queryParamsOutput;
-    let contentOutput;
+    let descriptionOutput;
     let headersOutput;
 
     if(action.headers) {
@@ -84,9 +84,9 @@ class Action extends Component{
       );
     }
 
-    if(action.content) {
-      contentOutput = (
-        <div dangerouslySetInnerHTML={{__html: action.content}} />
+    if(action.description) {
+      descriptionOutput = (
+        <div dangerouslySetInnerHTML={{__html: action.description}} />
       );
     }
 
@@ -150,11 +150,11 @@ class Action extends Component{
       );
     }
 
-    let condContentOutput;
-    if(contentOutput) {
-      condContentOutput = (
+    let condDescriptionOutput;
+    if(descriptionOutput) {
+      condDescriptionOutput = (
         <div>
-          {contentOutput}
+          {descriptionOutput}
         </div>
       );
     }
@@ -166,7 +166,7 @@ class Action extends Component{
           &nbsp;{action.name}
         </h3>
         <br/>
-        {condContentOutput}
+        {condDescriptionOutput}
         {condHeadersOutput}
         {urlParamsOutput}
         {queryParamsOutput}

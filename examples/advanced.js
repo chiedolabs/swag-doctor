@@ -107,7 +107,7 @@ let getUser = {
   },
   responses: [],
   headers: [ tokenHeader ],
-  content: `
+  description: `
     <p>
     When you get a user, XYZ.
     </p>
@@ -131,7 +131,7 @@ module.exports = {
   paths: {
     '/users': {
       actions: [ createUser ],
-      content: `
+      description: `
         <h4>Stuff</h4>
         <p>
         Groovy

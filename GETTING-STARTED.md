@@ -3,10 +3,12 @@
 To help you learn how Swag Doctor works, we're going to start creating API documentation for a blog. We won't create complete documentation but you should get the idea.
 
 1. [Install Swag Doctor](#install-swagdoc)
-2. [Setup](#setup)
-3. [First steps](#first-steps)
-4. [Creating Paths](#creating-paths)
-5. [Describing Your Paths](#describing-your-paths)
+1. [Setup](#setup)
+1. [First steps](#first-steps)
+1. [Creating Paths](#creating-paths)
+1. [Describing Your Paths](#describing-your-paths)
+1. [Creating Actions](#creating-actions)
+1. [A Complete Example](#a-complete-example) 
 
 ### <a name="install-swagdoc">Install Swag Doctor</a>
 	npm install -g swagdoc
@@ -63,4 +65,31 @@ To help you learn how Swag Doctor works, we're going to start creating API docum
 	```
 	
 2. Compile your docs and view the output.
-3. Note that this could get messy if you have a lot of content. Using a JS module that outputs an object instead would allow you to use es6 template strings as shown in the [advanced example](./examples/advanced.js).
+3. Note that this could get messy if you have a lot of content. Using a JS module that outputs an object instead of using a static json file as we are doing now would allow you to use es6 template strings for ```content``` as shown in the [advanced example](./examples/advanced.js).
+4. Now that we've got some descriptve content, let's add the meat. The actions.
+
+### <a name="creating-actions">Creating Actions</a>
+1. ```actions``` is an array in your path object. Let's add an action for creating a post and another for deleting a post to ```/posts/:id```
+
+	```
+	...
+	"/posts/:id": {
+      "actions": [
+        {
+          "name": "Update post",
+          "method": "POST",
+          "description": "Allows someone to update a post."
+        },
+        {
+          "name": "Delete",
+          "method": "DELETE",
+          "description": "Allows someone to update a post."
+        }
+      ]
+	},
+	...
+	
+### <a name="a-complete-example">A Complete Example</a>
+```
+...
+```

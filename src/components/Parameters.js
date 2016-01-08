@@ -29,19 +29,27 @@ class Parameters extends Component{
         required = <Button bsSize="xsmall">optional</Button>;
       }
 
+      let descriptionOutput;
+      if(parameters[key].description) {
+        descriptionOutput = (
+          <div dangerouslySetInnerHTML={{__html: parameters[key].description}} />
+        );
+      }
+
+
       if(displayTypes){
         return (
           <tr key={key}>
             <td>{key}</td>
             <td>{inferType(parameters[key])} {required}</td>
-            <td>{parameters[key].description}</td>
+            <td>{descriptionOutput}</td>
           </tr>
         );
       } else {
         return (
           <tr key={key}>
             <td>{key}</td>
-            <td>{parameters[key].description}</td>
+            <td>{descriptionOutput}</td>
           </tr>
         );
       }

@@ -85,11 +85,18 @@ class Fields extends Component{
         count++;
       }
 
+      let descriptionOutput;
+      if(description) {
+        descriptionOutput = (
+          <div dangerouslySetInnerHTML={{__html: description}} />
+        );
+      }
+
       return (
         <tr key={key}>
           <td>{indentedKey}</td>
           <td>{type} {required}</td>
-          <td>{description}</td>
+          <td>{descriptionOutput}</td>
         </tr>
       );
     });

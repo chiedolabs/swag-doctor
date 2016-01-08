@@ -11,18 +11,18 @@ class Path extends Component{
 
   render(){
     const { path, route } = this.props;
-    let contentOutput;
+    let descriptionOutput;
 
-    if(path.content) {
-      contentOutput = (
-        <div dangerouslySetInnerHTML={{__html: path.content}} />
+    if(path.description) {
+      descriptionOutput = (
+        <div dangerouslySetInnerHTML={{__html: path.description}} />
       );
     }
 
     return (
       <div>
         <h2 id={`${generateID(route)}`} className="url-path">{route}</h2>
-        {contentOutput}
+        {descriptionOutput}
         <Actions actions={path.actions} />
       </div>
     );

@@ -13,6 +13,13 @@ if(process.env.NODE_ENV === 'development') {
 
 class App extends Component{
   render(){
+    let descriptionOutput;
+    if(data.description) {
+      descriptionOutput = (
+        <div dangerouslySetInnerHTML={{__html: data.description}} />
+      );
+    }
+
     return (
       <Grid className="pull-left">
         <Row className="main">
@@ -21,7 +28,9 @@ class App extends Component{
           </Col>
           <Col xs={9} md={9} className="viewer">
             <h1>{data.name}</h1>
-            <p>{data.description}</p>
+            <div>
+              {descriptionOutput}
+            </div>
             <Main paths={data.paths} />
           </Col>
         </Row>
