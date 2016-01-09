@@ -216,13 +216,18 @@ There are three types of parameters you can specify, url parameters, body parame
 	```
 	...
 	"headers": [
-	{
+		{
 		"key": "Authorization",
 		"description": "This token is used to authenticate a user with a request. If it is not attached, there will be no user attached to the request. Note that the token must be prepended with 'Bearer: '",
 		"example": "Bearer: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI"
 		}
 	]
 	```
+
+2. You can add as many headers as you'd like by adding to the array.
+
+### Closing Thoughts
+Swagdoc should help you reduce repetition for API documentation and should give you a lot of control. The goal is to stay fairly simple so if there's functionality you're looking for, you can use description fields for the time being or Submit a Feature request.
 	
 ### You're now a pro.
 1. [Checkout the completed example](./examples/basic.json) 
