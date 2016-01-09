@@ -46,7 +46,6 @@ class Fields extends Component{
       let source;
       let count = 1;
       let required;
-
       for(let i of key.split('.')){
         if(description === '') {
           source = sourceObject;
@@ -56,13 +55,21 @@ class Fields extends Component{
 
         if(count === key.split('.').length) {
           i = i.replace('[]', []);
-          if(source && source[i] && source[i].description){
-            description = source[i].description;
+          if(source && source[i]){
             if(source[i].optional) {
               required = <Button bsSize="xsmall">optional</Button>;
             }
-          } else {
-            description = '';
+
+            if(source[i].description) {
+              description = source[i].description;
+            } else {
+              description = '';
+            }
+
+            // Override the inferred type if one is specified
+            if(source[i].type) {
+              typeOutput = source[i].type;
+            }
           }
         } else {
           let subject;
@@ -81,15 +88,6 @@ class Fields extends Component{
 
           if(_.endsWith(i, '[]')) {
             description = description[0];
-          }
-
-          if(subject.optional) {
-            required = <Button bsSize="xsmall">optional</Button>;
-          }
-
-          // Override the inferred type if one is specified
-          if(subject.type) {
-            typeOutput = subject.type;
           }
         }
         count++;

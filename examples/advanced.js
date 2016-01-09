@@ -3,7 +3,7 @@ import ob from 'objob';
 import faker from 'faker';
 
 let book = {
-  'id': { description: 'The id', example: 'ae3432aeb35563245'},
+  'id': { description: 'The id', example: 'ae3432aeb35563245', type: 'MongoID'},
   'name': {
     description: 'The name',
     example: () => {
@@ -18,6 +18,7 @@ let user = {
   'age': { description: 'The age', example: 24},
   'email':{
     description:'Email address',
+    type: 'Email (String)',
     example: () => {
       return faker.internet.email();
     },
