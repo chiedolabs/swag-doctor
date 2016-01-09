@@ -25,12 +25,6 @@
     "swagdoc": "swag-doctor.js"
   },
   "dependencies": {
-    "ejs": "^2.3.4",
-    "lodash": "^3.10.1",
-    "ncp": "^2.0.0",
-    "yargs": "^3.31.0"
-  },
-  "devDependencies": {
     "babel-cli": "^6.3.17",
     "babel-core": "^6.3.17",
     "babel-eslint": "^5.0.0-beta4",
@@ -41,6 +35,13 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "babel-register": "^6.3.13",
+    "ejs": "^2.3.4",
+    "lodash": "^3.10.1",
+    "ncp": "^2.0.0",
+    "objob": "^2.0.1",
+    "yargs": "^3.31.0"
+  },
+  "devDependencies": {
     "dotenv": "^1.2.0",
     "eslint": "^1.10.3",
     "eslint-plugin-babel": "^3.0.0",
@@ -55,7 +56,6 @@
     "imports-loader": "^0.6.5",
     "json-string": "0.0.1",
     "nodemon": "^1.8.1",
-    "objob": "^2.0.1",
     "react": "^0.14.0",
     "react-addons-test-utils": "^0.14.0",
     "react-bootstrap": "^0.28.1",
