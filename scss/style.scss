@@ -7,7 +7,8 @@
 }
 
 
-.main { width: 1200px; }
+.main { width: 1200px; max-width: 100%; }
+.container { max-width: 100%; }
 .viewer { margin-left: 300px; }
 .side-nav {
   background-color: #f5f5f5; padding: 20px; height: 100vh; overflow-y: scroll;
@@ -35,4 +36,5 @@ h1, h2 {
 @media only screen and (max-width : 1200px) {
   .side-nav { display: none; }
   .viewer { margin-left: 0; width: 100%; }
+  .row { margin-left: 0; margin-right: 0; }
 }
