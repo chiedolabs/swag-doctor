@@ -23,7 +23,7 @@ class Path extends Component{
       <div>
         <h2 id={`${generateID(route)}`} className="url-path">{route}</h2>
         {descriptionOutput}
-        <Actions actions={path.actions} />
+        <Actions actions={path.actions} route={route} />
       </div>
     );
   }

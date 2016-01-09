@@ -17,7 +17,7 @@ class SideNav extends Component{
     let sidenavOutput = _.map(routes, (route) => {
       let subnavOutput = _.map(paths[route].actions, (action) => {
         return (
-          <NavItem key={action.name} href={`#${generateID(action.name)}`}>
+          <NavItem key={action.name} href={`#${generateID(route+action.name)}`}>
             {action.name}
           </NavItem>
         );

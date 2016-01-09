@@ -12,10 +12,11 @@ class Action extends Component{
 
   static propTypes = {
     action: PropTypes.object,
+    route: PropTypes.string,
   };
 
   render(){
-    const { action } = this.props;
+    const { action, route } = this.props;
 
     let bodyParams;
     let urlParams;
@@ -162,7 +163,7 @@ class Action extends Component{
     return (
       <div>
         <Button bsStyle="success" className="pull-left">{action.method}</Button>
-        <h3 id={`${generateID(action.name)}`}>
+        <h3 id={`${generateID(route+action.name)}`}>
           &nbsp;{action.name}
         </h3>
         <br/>

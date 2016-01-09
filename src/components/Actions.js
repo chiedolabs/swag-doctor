@@ -6,13 +6,14 @@ class Actions extends Component{
 
   static propTypes = {
     actions: PropTypes.array,
+    route: PropTypes.string,
   };
 
   render(){
-    const { actions } = this.props;
+    const { actions, route } = this.props;
 
     let actionsOutput = _.map(actions, (action) => {
-      return <Action key={action.name} action={action} />;
+      return <Action key={action.name} action={action} route={route} />;
     });
 
     return (
