@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 'use strict';
 require('babel-register');
 let argv   = require('yargs').argv;
