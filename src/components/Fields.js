@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { Table, Button } from 'react-bootstrap';
 import * as _ from 'lodash';
+import type from 'type-of';
 
 class Fields extends Component{
 
@@ -20,19 +21,23 @@ class Fields extends Component{
     let fieldsOutput = _.map(keys, (key) => {
       // Indent the fields that are nested fields
       let padding = 0;
-      for(let i = 0; i < (key.split('.').length -1)*2; i++) {
+      let splitKey = key.split('.');
+      for(let i = 0; i < (splitKey.length -1)*2; i++) {
         padding += 10;
       }
-      let indentedKey = <span style={{paddingLeft: padding}}>{key}</span>;
+      let specificField;
+      // Get the last part separated by the period
+      // FOr example, get 'id' from 'user.test.id'
+      specificField = splitKey[splitKey.length - 1].replace('[]','');
+      let indentedKey = <span style={{paddingLeft: padding}}>{specificField}</span>;
 
-
-      let type;
+      let typeOutput;
       // For arrays, we'll need to parse the key a little differently since it has the
       // [] syntax in the key.
-      if(_.isArray(fields[key])) {
-        type = (typeof fields[key][0]) + '[]';
+      if(key.endsWith('[]')) {
+        typeOutput = type(fields[key]) + '[]';
       } else {
-        type = typeof fields[key];
+        typeOutput = type(fields[key]);
       }
 
       // Now we need to generate the descriptions using the source object to
@@ -81,6 +86,11 @@ class Fields extends Component{
           if(subject.optional) {
             required = <Button bsSize="xsmall">optional</Button>;
           }
+
+          // Override the inferred type if one is specified
+          if(subject.type) {
+            typeOutput = subject.type;
+          }
         }
         count++;
       }
@@ -95,7 +105,7 @@ class Fields extends Component{
       return (
         <tr key={key}>
           <td>{indentedKey}</td>
-          <td>{type} {required}</td>
+          <td>{typeOutput} {required}</td>
           <td>{descriptionOutput}</td>
         </tr>
       );

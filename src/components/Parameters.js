@@ -24,9 +24,9 @@ class Parameters extends Component{
     };
 
     let parametersOutput = _.map(keys, (key) => {
-      let required;
+      let optional;
       if(parameters[key].optional) {
-        required = <Button bsSize="xsmall">optional</Button>;
+        optional = <Button bsSize="xsmall">optional</Button>;
       }
 
       let descriptionOutput;
@@ -38,10 +38,11 @@ class Parameters extends Component{
 
 
       if(displayTypes){
+        let type = parameters[key].type || inferType(parameters[key]);
         return (
           <tr key={key}>
             <td>{key}</td>
-            <td>{inferType(parameters[key])} {required}</td>
+            <td>{type} {optional}</td>
             <td>{descriptionOutput}</td>
           </tr>
         );
