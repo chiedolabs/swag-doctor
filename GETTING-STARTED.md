@@ -143,6 +143,7 @@ There are three types of parameters you can specify, url parameters, body parame
  				"example": {
  					"title": {
  						"example": "I love chicken.",
+ 						"type": "Title String",
  						"description": "The post title"
  					},
  					"tags": {
@@ -158,7 +159,7 @@ There are three types of parameters you can specify, url parameters, body parame
  	```
  	
  	
-	>This is probably the only gotcha for Swagdoc. You'll notice that you'll need to represent each nested layer of your objects as inside an `example` key. When you generate the example below, it should make sense. The reasoning for this is that we need a level where we can define descriptions.
+	>This is probably the only gotcha for Swagdoc. You'll notice that you'll need to represent each nested layer of your objects as inside an `example` key. When you generate the example below, it should make sense. The reasoning for this is that we need a level where we can define descriptions. The type of the parameter is inferred from the example but you can override that and specify a type if you'd like as you see for ```title```.
 	
 4. Now, let's add some responses.
 
@@ -204,7 +205,7 @@ There are three types of parameters you can specify, url parameters, body parame
 	...
 	```
 	
-	>Note that types are automatically inferred from your example value and you get a response example as well as tabular information all from the above. This helps to limit repetition. When you use a JS module to create your docs, you can share a lot of the same code between your responses and paramaters. It's quite a time saver and helps reduce errors.
+	>Note that types are automatically inferred from your example value and you get a response example as well as tabular information all from the above. This helps to limit repetition. You could also specify a ```type``` specificially if you wanted to override the inferred type output. When you use a JS module to create your docs, you can share a lot of the same code between your responses and paramaters. It's quite a time saver and helps reduce errors.
 	
 2. Lastly, we can't forget headers.
 

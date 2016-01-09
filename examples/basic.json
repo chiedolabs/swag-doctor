@@ -17,6 +17,7 @@
                 "example": {
                   "title": {
                     "example": "I love chicken.",
+                    "type": "Title String",
                     "description": "The post title"
                   },
                   "tags": {
