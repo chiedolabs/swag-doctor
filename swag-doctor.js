@@ -8,6 +8,7 @@ let fs     = require('fs');
 let ncp    = require('ncp').ncp;
 let ejs    = require('ejs');
 let ob     = require('objob');
+let chalk = require('chalk');
 
 if(argv.i && argv.o) {
   // Get the execution directory
@@ -49,6 +50,27 @@ if(argv.i && argv.o) {
       return console.error(err);
     }
     // Save the doc data file
-    fs.writeFile(`${cwd}/${outputDir}/index.html`, html , 'utf8');
+    fs.writeFile(`${cwd}/${outputDir}/index.html`, html , 'utf8', () => {
+      let swagMessages = [
+        'The swag is strong with you.',
+        'Swaggity.',
+        'That\'s right.',
+        'Your swag is confirmed.',
+        'You got what the doctor prescribed... Swag.',
+        'Swag sandwhich.',
+        'Swag is a state of mind.',
+        'SWAG',
+        'You asked for greatness. You got swag.',
+        'Swag has been your recompense.',
+        'Doctor Swag says groovy.',
+        'Your level of swag is disturbing.',
+        'Tastes like swag.',
+        'Maybe we\'ll be mature and won\'t say swag.',
+        'Swag. Swag. On you. Sitting by the fire while we\'re eating fondue.',
+        'Our society needs to restablish a culture of swag.',
+      ];
+      let randMessage = swagMessages[Math.floor(Math.random() * swagMessages.length)];
+      console.log(chalk.green('Docs generated: '  + randMessage));
+    });
   });
 }
