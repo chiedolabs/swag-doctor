@@ -18,6 +18,7 @@ class Fields extends Component{
       keys.push(field);
     };
 
+    let matchedIndentedKeys = [];
     let fieldsOutput = _.map(keys, (key) => {
       // Indent the fields that are nested fields
       let padding = 0;
@@ -80,14 +81,16 @@ class Fields extends Component{
             subject = source[i];
           }
 
-          if(_.isFunction(subject.example)) {
-            description = subject.example();
-          } else {
-            description = subject.example;
-          }
+          if(subject) {
+            if(_.isFunction(subject.example)) {
+              description = subject.example();
+            } else {
+              description = subject.example;
+            }
 
-          if(_.endsWith(i, '[]')) {
-            description = description[0];
+            if(_.endsWith(i, '[]')) {
+              description = description[0];
+            }
           }
         }
         count++;
@@ -100,13 +103,18 @@ class Fields extends Component{
         );
       }
 
-      return (
-        <tr key={key}>
-          <td>{indentedKey}</td>
-          <td>{typeOutput} {required}</td>
-          <td>{descriptionOutput}</td>
-        </tr>
-      );
+      if(_.includes(matchedIndentedKeys, padding+specificField) === false) {
+        matchedIndentedKeys.push(padding+specificField);
+        return (
+          <tr key={key}>
+            <td>{indentedKey}</td>
+            <td>{typeOutput} {required}</td>
+            <td>{descriptionOutput}</td>
+          </tr>
+        );
+      } else {
+        return null;
+      }
     });
 
     return (
