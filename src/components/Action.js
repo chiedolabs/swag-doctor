@@ -145,7 +145,7 @@ class Action extends Component{
     if(headersOutput) {
       condHeadersOutput = (
         <div>
-          <h3>Headers</h3>
+          <h4>Headers</h4>
           {headersOutput}
           <br/>
         </div>

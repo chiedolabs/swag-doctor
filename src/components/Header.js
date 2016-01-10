@@ -28,7 +28,7 @@ class Header extends Component{
 
       exampleOutput = (
         <div>
-          <h5>Example:</h5>
+          <h6>Example:</h6>
           <pre className="prettyprint">
             <strong>{header.key}:</strong> {example}
           </pre>
@@ -39,7 +39,7 @@ class Header extends Component{
 
     return (
       <div>
-        <h4>{header.key}</h4>
+        <h5>{header.key}</h5>
         <Table striped bordered condensed hover>
           <thead>
             <tr>
