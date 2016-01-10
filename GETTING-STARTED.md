@@ -230,5 +230,8 @@ There are three types of parameters you can specify, url parameters, body parame
 Swagdoc should help you reduce repetition for API documentation and should give you a lot of control. The goal is to stay fairly simple so if there's functionality you're looking for, you can use description fields for the time being or Submit a Feature request.
 	
 ### You're now a pro.
-1. [Checkout the completed example](./examples/basic.json) 
-1. [Checkout a complete Advanced example using a js module](./examples/advanced.js) 
+See the below for completed code examples.
+
+1. [The completed example](./examples/basic.json) 
+1. [A complete Advanced example using a js module](./examples/advanced.js) 
+1. <a href="https://github.com/chiedolabs/blog-app-in-many-stacks/blob/master/back-ends/api-resources/rest/src/apidocs.js" target="_blank">An even more complete Advanced example using a js module</a>
