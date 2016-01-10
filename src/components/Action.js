@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Panel } from 'react-bootstrap';
 import { generateID, modelToJSON } from '../utils/functions';
 import Parameters from './Parameters';
 import Headers from './Headers';
@@ -130,10 +130,11 @@ class Action extends Component{
           <div key={response.status}>
             <h4>{response.name} (status: {response.status})</h4>
             {resFields}
-            <h5>Example:</h5>
-            <pre>
-              {parsedResBody}
-            </pre>
+            <Panel header="Example Response" eventKey={response.status} collapsible>
+              <pre>
+                {parsedResBody}
+              </pre>
+            </Panel>
             <br/>
           </div>
         );
