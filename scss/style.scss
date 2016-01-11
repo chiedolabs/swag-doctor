@@ -19,7 +19,7 @@
 
 .nav-header {
   font-size: 11px; font-weight: bold; line-height: 20px; color: #999;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.5); word-wrap:break-word;
 
   a { border: 1px solid #e5e5e5; font-family: "Source Sans Pro", sans-serif;
     font-weight: 700; font-size: 16px; background-color: #ffffff; }
@@ -30,7 +30,7 @@ h1, h2 {
 }
 
 .url-path {
-  background: #000000; color: #ffffff; padding: 10px; @include border-radius(5px);
+  background: #000000; color: #ffffff; padding: 10px; @include border-radius(5px); word-wrap:break-word;
 }
 
 @media only screen and (max-width : 1200px) {
