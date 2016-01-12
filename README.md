@@ -11,6 +11,8 @@ Swag doctor believes that your REST API documentation shouldn't live within your
 - Automatic examples based on your schema
 - Swag
 
+Technically, we could have put together an official Swag Doc spec but that's overkill. The spec is simple. It would be easiest for you to just review the getting started guide and the completed examples at the end.
+
 [Getting started in 5 minutes](./GETTING-STARTED.md)
 
 ## Goals
