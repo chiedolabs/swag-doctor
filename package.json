@@ -39,7 +39,7 @@
     "ejs": "^2.3.4",
     "lodash": "^3.10.1",
     "ncp": "^2.0.0",
-    "objob": "^2.7.5",
+    "objob": "^2.7.9",
     "yargs": "^3.31.0"
   },
   "devDependencies": {
