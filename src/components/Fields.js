@@ -18,7 +18,9 @@ class Fields extends Component{
       keys.push(field);
     };
 
+
     let matchedIndentedKeys = [];
+
     let fieldsOutput = _.map(keys, (key) => {
       // Indent the fields that are nested fields
       let padding = 0;
@@ -103,8 +105,12 @@ class Fields extends Component{
         );
       }
 
-      if(_.includes(matchedIndentedKeys, padding+specificField) === false) {
-        matchedIndentedKeys.push(padding+specificField);
+      // We use this to make sure array items don't appear twice in the fields.
+      // We convert x[].0.name and x[].1.name to x[].x.name to make sure that they
+      // are treated as the same item
+      let match = key.replace(/\[\]\.\d*\./g,'[].x.');
+      if(_.includes(matchedIndentedKeys, match) === false) {
+        matchedIndentedKeys.push(match);
         return (
           <tr key={key}>
             <td>{indentedKey}</td>
@@ -113,6 +119,7 @@ class Fields extends Component{
           </tr>
         );
       } else {
+
         return null;
       }
     });
