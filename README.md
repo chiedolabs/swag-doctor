@@ -27,6 +27,9 @@ The goal of Swag Doctor is to be a much simpler alternative to something like Sw
 	
 ## Usage
   	swagdoc -i {source file} -o {output directory}
+  	
+  	
+ *Note that if you use es2015 features like 'import' and others, in your source file, you will need to make sure you have your babelrc configured and the necessary libraries installed as usual. Treat your input source file like any other js module you would create.*
 
 ## Further Reading
 
