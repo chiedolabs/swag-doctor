@@ -2,6 +2,8 @@
 
 A library for generating RESTful API documentation with <b>a json file or JS module</b> that outputs a valid json object.
 
+<b>This is not a library to auto-generate documentation like via comment blocks. Swag Doctor let's you define your API with pure Javascript.</b>
+
 By allowing you to use a js module as input, you can remove redundancy in your API documentation input file.
 
 Swag doctor believes that your REST API documentation shouldn't live within your source code. Your REST API documentation should stand alone. So while Swag Doctor is built with Javascript, you can use it do describe a REST API that will be built in any language.
