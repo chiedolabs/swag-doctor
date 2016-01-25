@@ -11,8 +11,5 @@ Now you can make changes to src/examples/advanced.js and view your updated docum
 ##Rules
 * Please squash your commits
 
-## Builds
-Please do not run builds if you're submitting a PR. The maintainers of this repo will take care of that if your pull request goes into the master.
-
 ## Other thoughts
 Nothing else comes to mind. Just make sure you test your work before submiting a PR.
