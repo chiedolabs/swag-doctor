@@ -9,6 +9,7 @@ let ncp    = require('ncp').ncp;
 let ejs    = require('ejs');
 let ob     = require('objob');
 let chalk = require('chalk');
+let pjson = require('./package.json');
 
 if(argv.i && argv.o) {
   // Get the execution directory
@@ -28,6 +29,8 @@ if(argv.i && argv.o) {
     }
   });
 
+  data.timestamp = Date.now();
+  data.version=pjson.version;
   let html         = template({
     swagDocData: data,
     js: 'static/js/react-bundle.js',

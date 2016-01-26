@@ -8,6 +8,8 @@ let data;
 // In development, load with commonjs for hot reloading benefits
 if(process.env.NODE_ENV === 'development') {
   data = require('../../examples/advanced');
+  data.timestamp = Date.now();
+  data.version = 'Dev';
 } else {
   data = window.swagDocData;
 }
@@ -35,7 +37,7 @@ class App extends Component{
             <div>
               {descriptionOutput}
             </div>
-            <Main paths={data.paths} />
+            <Main paths={data.paths} version={data.version} timestamp={data.timestamp} />
           </Col>
         </Row>
       </Grid>
