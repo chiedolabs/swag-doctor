@@ -37,11 +37,14 @@
     "babel-preset-stage-0": "^6.3.13",
     "babel-register": "^6.3.13",
     "chalk": "^1.1.1",
+    "classnames": "^2.2.3",
     "deep-freeze": "0.0.1",
     "ejs": "^2.3.4",
     "lodash": "^3.10.1",
     "ncp": "^2.0.0",
     "objob": "^2.7.11",
+    "pui-react-back-to-top": "^3.0.0-alpha.3",
+    "react-fontawesome": "^0.3.3",
     "yargs": "^3.31.0"
   },
   "devDependencies": {
