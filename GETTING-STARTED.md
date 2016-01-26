@@ -34,7 +34,7 @@ To help you learn how Swag Doctor works, we're going to start creating API docum
 	}
 	```
 	
-2. Go ahead and compile your docs by running `swagdoc -i test.json -o docs`.
+2. Go ahead and compile your docs by running `swagdoc -i example.json -o docs`.
 
 3. Now open docs/index.html.
 
