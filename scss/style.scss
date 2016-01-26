@@ -1,3 +1,4 @@
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css";
 @import "bootstrap";
 
 @mixin border-radius($radius) {
@@ -14,6 +15,14 @@
   background-color: #f5f5f5; padding: 20px; height: 100vh; overflow-y: scroll;
   position: fixed; width: 300px;
 }
+
+.nav-toggle, .back-to-top { background: #000; color: #fff; cursor: pointer; }
+.nav-toggle { display: none; z-index: 10; width: 100%; padding: 14px; }
+.fa-bars { font-size: 36px; }
+
+.back-to-top { position: fixed; bottom: 0; right: 0; padding: 12px; line-height: 1; border-top-left-radius: 5px;
+  &, &:focus, &:hover { color: #fff; text-decoration: none; }
+  &:after { font-family: 'FontAwesome'; content: "\f062"; font-size: 24px; }}
 
 .nav-header, .nav-item { display: block; }
 
@@ -34,7 +43,9 @@ h1, h2 {
 }
 
 @media only screen and (max-width : 1200px) {
-  .side-nav { display: none; }
+  .nav-toggle, .scroll-top { display: block; }
+  .side-nav { display: block; z-index: 10; position: relative; width: 100%; height: auto;
+    &.hide-side-nav { display: none; }}
   .viewer { margin-left: 0; width: 100%; }
   .row { margin-left: 0; margin-right: 0; }
 }
