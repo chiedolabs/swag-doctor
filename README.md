@@ -30,6 +30,10 @@ The goal of Swag Doctor is to be a much simpler alternative to something like Sw
   	
   	
  *Note that if you use es2015 features like 'import' and others, in your source file, you will need to make sure you have your babelrc configured and the necessary libraries installed as usual. Treat your input source file like any other js module you would create.*
+ 
+### Reserved Characters.
+ 
+*Note that your object's can not contain keys with <code>.</code> or <code>[]</code>. <code>.</code> and <code>[]</code> are reserved for performing some deep operations needed to make this library work. If you attempt to use either of those in your object keys, things will fail horribly.*
 
 ## Further Reading
 
