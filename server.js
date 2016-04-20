@@ -1,10 +1,10 @@
 'use strict';
-require('babel-register');
+require('babel/register');
 let env     = process.env.NODE_ENV || 'development';
 let fs      = require('fs');
 let express = require('express');
 let path    = require('path');
-let data    = require(`./examples/advanced`);
+let data    = require('./examples/advanced');
 
 fs.stat('.env', (err, stat) => {
   if(err === null) {
