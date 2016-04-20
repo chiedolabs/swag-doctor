@@ -45,6 +45,7 @@
     "objob": "^2.7.11",
     "pui-react-back-to-top": "^3.0.0-alpha.3",
     "react-fontawesome": "^0.3.3",
+    "type-of": "^2.0.1",
     "yargs": "^3.31.0"
   },
   "devDependencies": {
@@ -67,7 +68,6 @@
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.0.1",
     "rimraf": "^2.4.3",
-    "type-of": "^2.0.1",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0"
