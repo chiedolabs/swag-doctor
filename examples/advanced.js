@@ -84,9 +84,6 @@ let createUser = {
           example: ob.pick(user, ['id','name', 'email', 'username', 'books', 'age']) },
       },
     },
-    unauthorizedError,
-    permissionsError,
-    notFoundError,
   ],
 };
 
@@ -126,6 +123,11 @@ let updateUser = {
 module.exports = {
   name: 'Example API Documentation',
   description: 'This is an example of the documentation you can create with Swag Doctor.',
+  globalResponses: [
+    unauthorizedError,
+    permissionsError,
+    notFoundError,
+  ],
   paths: {
     '/users': {
       actions: [ createUser ],

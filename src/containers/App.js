@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import Main from '../components/Main';
 import NavToggle from '../components/NavToggle';
 import SideNav from '../components/SideNav';
-import { Col, Row, Grid } from 'react-bootstrap';
+import { Col, Row, Grid, Nav } from 'react-bootstrap';
 import deepFreeze from 'deep-freeze';
+import Responses from '../components/Responses';
 let BackToTop = require('pui-react-back-to-top').BackToTop;
 let classNames = require('classnames');
 
@@ -60,7 +61,9 @@ class App extends Component{
               <div>
                 {descriptionOutput}
               </div>
-            <Main paths={data.paths} version={data.version} timestamp={data.timestamp} />
+              <h2 id="global-responses" className="url-path">Global Responses</h2>
+              <Responses responses={data.globalResponses} />
+              <Main paths={data.paths} version={data.version} timestamp={data.timestamp} />
             </Col>
           </Row>
         </Grid>
