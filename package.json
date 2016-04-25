@@ -1,6 +1,6 @@
 {
   "name": "swagdoc",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "Documentation Generator",
   "scripts": {
     "clean": "rimraf dist",
