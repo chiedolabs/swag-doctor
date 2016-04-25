@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 'use strict';
-require('babel-core/register');
+require('babel-register');
 let argv   = require('yargs').argv;
 let path   = require('path');
 let _      = require('lodash');
