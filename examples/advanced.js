@@ -1,6 +1,6 @@
 'use strict';
-import ob from 'objob';
-import faker from 'faker';
+let ob = require('objob');
+let faker = require('faker');
 
 let book = {
   'id': { description: 'The id', example: 'ae3432aeb35563245', type: 'MongoID'},
