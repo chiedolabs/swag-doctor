@@ -14,8 +14,8 @@ let pjson = require('./package.json');
 if(argv.i && argv.o) {
   // Get the execution directory
   let cwd = path.resolve('.');
-  let inputFile = _.trimLeft(argv.i, './');
-  let outputDir = _.trimRight(argv.o, '/');
+  let inputFile = _.trimStart(argv.i, './');
+  let outputDir = _.trimEnd(argv.o, '/');
 
   let data         = require(`${cwd}/${inputFile}`);
   let templateFile = fs.readFileSync(`${__dirname}/templates/index.ejs`).toString();
