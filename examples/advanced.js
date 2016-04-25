@@ -129,17 +129,33 @@ module.exports = {
     notFoundError,
   ],
   paths: {
-    '/users': {
-      actions: [ createUser ],
-      description: `
-        <h4>Stuff</h4>
-        <p>
-        Groovy
-        </p>
-      `,
+    'Group': {
+      '/users': {
+        actions: [ createUser ],
+        description: `
+          <h4>Stuff</h4>
+          <p>
+          Groovy
+          </p>
+        `,
+      },
+      '/users/:id': {
+        actions: [ getUser, updateUser ],
+      },
     },
-    '/users/:id': {
-      actions: [ getUser, updateUser ],
+    'Other Group': {
+      '/users': {
+        actions: [ createUser ],
+        description: `
+          <h4>Stuff</h4>
+          <p>
+          Groovy
+          </p>
+        `,
+      },
+      '/users/:id': {
+        actions: [ getUser, updateUser ],
+      },
     },
   },
 };

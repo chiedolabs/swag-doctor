@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Main from '../components/Main';
 import NavToggle from '../components/NavToggle';
 import SideNav from '../components/SideNav';
-import { Col, Row, Grid, Nav } from 'react-bootstrap';
+import { Col, Row, Grid, Accordion, Panel } from 'react-bootstrap';
 import deepFreeze from 'deep-freeze';
 import Responses from '../components/Responses';
 let BackToTop = require('pui-react-back-to-top').BackToTop;
@@ -48,13 +48,35 @@ class App extends Component{
       'side-nav': true,
       'hide-side-nav': this.state.hideSideNav,
     });
+
+    // First get the keys for all the groups which is what is at the top level
+    // of the paths object
+    let groups = Object.keys(data.paths);
+    // Using those groups, get the paths for each group
+    let sideNavs = groups.map((group) => {
+      return (
+        <Panel header={group} key={groups.indexOf(group)} eventKey={groups.indexOf(group)}>
+          <SideNav paths={data.paths[group]} toggleSideNav={this.handleToggle} />
+        </Panel>
+      );
+    });
+
+    let mainContents = groups.map((group) => {
+      return (
+        <Main paths={data.paths[group]} version={data.version} timestamp={data.timestamp} key={groups.indexOf(group)}/>
+      );
+    });
+
+
     return (
       <div>
         <NavToggle toggleSideNav={this.handleToggle} hideSideNav={this.state.hideSideNav} />
         <Grid className="pull-left">
           <Row className="main">
             <Col xs={3} md={3} className={sideNavClass}>
-              <SideNav paths={data.paths} toggleSideNav={this.handleToggle} />
+              <Accordion className="side-nav-accordion">
+                {sideNavs}
+              </Accordion>
             </Col>
             <Col xs={9} md={9} className="viewer">
               <h1>{data.name}</h1>
@@ -63,7 +85,7 @@ class App extends Component{
               </div>
               <h2 id="global-responses" className="url-path">Global Responses</h2>
               <Responses responses={data.globalResponses} />
-              <Main paths={data.paths} version={data.version} timestamp={data.timestamp} />
+              {mainContents}
             </Col>
           </Row>
         </Grid>

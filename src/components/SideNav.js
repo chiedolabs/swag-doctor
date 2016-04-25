@@ -29,7 +29,7 @@ class SideNav extends Component{
     let sidenavOutput = _.map(routes, (route) => {
       let subnavOutput = _.map(paths[route].actions, (action) => {
         return (
-          <NavItem key={action.name} href={`#${generateID(route+action.name)}`} >
+          <NavItem className="nav-item" key={action.name} href={`#${generateID(route+action.name)}`} >
             {action.name}
           </NavItem>
         );

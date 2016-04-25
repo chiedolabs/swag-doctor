@@ -15,6 +15,7 @@
   background-color: #f5f5f5; padding: 20px; height: 100vh; overflow-y: scroll;
   position: fixed; width: 300px;
 }
+.side-nav-accordion .panel-body { padding-top: 0; }
 
 .nav-toggle, .back-to-top { background: #000; color: #fff; cursor: pointer; }
 .nav-toggle { display: none; z-index: 10; width: 100%; padding: 14px; }
@@ -30,8 +31,13 @@
   font-size: 11px; font-weight: bold; line-height: 20px; color: #999;
   text-shadow: 0 1px 0 rgba(255,255,255,0.5); word-wrap:break-word;
 
-  a { border: 1px solid #e5e5e5; font-family: "Source Sans Pro", sans-serif;
-    font-weight: 700; font-size: 16px; background-color: #ffffff; }
+  a {  font-family: "Source Sans Pro", sans-serif;
+    font-weight: 700; font-size: 16px; background-color: #000000; color: #ffffff; }
+
+}
+
+.nav-item {
+  a { color: #B92C2C; font-weight: bold; }
 }
 
 h1, h2 {

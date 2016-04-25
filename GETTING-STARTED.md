@@ -47,10 +47,12 @@ To help you learn how Swag Doctor works, we're going to start creating API docum
 	```
 	...
 	"paths": {
-		"/posts": {
+		"group": {
+			"/posts": {
+			},
+	    	"/posts/:id": {
+			}
 		},
-	    "/posts/:id": {
-		}
 	}
 	...
 	```
