@@ -55,9 +55,13 @@ class App extends Component{
     let groups = Object.keys(data.groups);
     // Using those groups, get the paths for each group
     let sideNavs = groups.map((group) => {
+      let sideNav;
+      if(data.groups[group].paths){
+        sideNav = <SideNav paths={data.groups[group].paths} toggleSideNav={this.handleToggle} />;
+      }
       return (
         <Panel header={group} key={groups.indexOf(group)} eventKey={groups.indexOf(group)} bsStyle="primary">
-          <SideNav paths={data.groups[group].paths} toggleSideNav={this.handleToggle} />
+          {sideNav}
         </Panel>
       );
     });
@@ -65,17 +69,22 @@ class App extends Component{
     let mainContents = groups.map((group) => {
 
       let descriptionOutput;
-      if(data.description) {
+      if(data.groups[group].description) {
         descriptionOutput = (
           <Panel><div dangerouslySetInnerHTML={{__html: data.groups[group].description}} /></Panel>
         );
+      }
+      let pathsOutput;
+
+      if(data.groups[group].paths) {
+        pathsOutput = <Main paths={data.groups[group].paths}/>;
       }
 
       return (
         <div key={groups.indexOf(group)}>
           <Panel header={group} bsStyle="primary">
             {descriptionOutput}
-            <Main paths={data.groups[group].paths}/>
+            {pathsOutput}
           </Panel>
         </div>
       );
