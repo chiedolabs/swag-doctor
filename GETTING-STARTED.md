@@ -30,7 +30,7 @@ To help you learn how Swag Doctor works, we're going to start creating API docum
 	{
 		"name": "Blog App Documentation",
 		"description": "This is the documentation for the blog app.",
-		"paths": {}
+		"groups": {}
 	}
 	```
 	
@@ -40,18 +40,21 @@ To help you learn how Swag Doctor works, we're going to start creating API docum
 
 4. You'll notice that your documentation is bare. That's because we need some paths. Let's do that next.
 
-### <a name="creating-paths">Creating Paths</a>
+### <a name="creating-paths">Creating Groups and Paths</a>
 
-1. Now let's create some empty paths. To do so, edit the ```paths``` key in your json file as show below.
+1. Now let's create some empty paths in a group. To do so, edit the ```groups``` key in your json file as show below.
 
 	```
 	...
-	"paths": {
-		"group": {
-			"/posts": {
-			},
-	    	"/posts/:id": {
-			}
+	"groups": {
+		"group_one": {
+      description: 'Group one description',
+      paths: {
+        "/posts": {
+        },
+          "/posts/:id": {
+        }
+      },
 		},
 	}
 	...
@@ -234,6 +237,5 @@ Swagdoc should help you reduce repetition for API documentation and should give 
 ### You're now a pro.
 See the below for completed code examples.
 
-1. [The completed example](./examples/basic.json) 
 1. [A complete Advanced example using a js module](./examples/advanced.js) 
 1. <a href="https://github.com/chiedolabs/blog-app-in-many-stacks/blob/master/back-ends/api-resources/rest/src/apidocs.js" target="_blank">An even more complete Advanced example using a js module</a>

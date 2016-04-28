@@ -4,7 +4,6 @@ import { generateID, modelToJSON } from '../utils/functions';
 import Parameters from './Parameters';
 import Headers from './Headers';
 import Fields from './Fields';
-import jsonString from 'json-string';
 import * as _ from 'lodash';
 import Responses from './Responses';
 import ob from 'objob';
@@ -30,7 +29,9 @@ class Action extends Component{
 
     if(action.headers) {
       headersOutput = (
-        <Headers headers={action.headers} />
+        <Panel header="Headers" bsStyle="info">
+          <Headers headers={action.headers} />
+        </Panel>
       );
     }
 
@@ -50,19 +51,17 @@ class Action extends Component{
 
     if(urlParams){
       urlParamsOutput = (
-        <div>
-          <h4>URL Parameters</h4>
+        <Panel header="URL Parameters" bsStyle="info">
           <Parameters parameters={urlParams} displayTypes={false} />
-        </div>
+        </Panel>
       );
     }
 
     if(queryParams){
       queryParamsOutput = (
-        <div>
-          <h4>Query Parameters</h4>
+        <Panel header="Query Parameters" bsStyle="info">
           <Parameters parameters={queryParams} displayTypes={false} />
-        </div>
+        </Panel>
       );
     }
 
@@ -79,10 +78,9 @@ class Action extends Component{
       }
 
       bodyParamsOutput = (
-        <div>
-          <h4>Body Parameters:</h4>
+        <Panel header="Body Parameters" bsStyle="info">
           <Fields sourceObject={bodyParams} fields={flatFieldsWithoutArrays} />
-        </div>
+        </Panel>
       );
     }
 
@@ -95,9 +93,11 @@ class Action extends Component{
     // Need to generate the json response output from the json object here
     // so I can use it later.
     let responsesOutput;
-    if(action.responses) {
+    if(action.responses && action.responses.length > 0) {
       responsesOutput = (
-        <Responses responses={action.responses} />
+        <Panel header="Responses" bsStyle="info" footer={<div>Also see <a href='#global-responses'>Global Responses</a> for error responses, 404 responses, etc.</div>}>
+          <Responses responses={action.responses} />
+        </Panel>
       );
     }
 
@@ -115,15 +115,15 @@ class Action extends Component{
     let condDescriptionOutput;
     if(descriptionOutput) {
       condDescriptionOutput = (
-        <div>
+        <Panel>
           {descriptionOutput}
-        </div>
+        </Panel>
       );
     }
 
     return (
       <div>
-        <Button bsStyle="success" className="pull-left">{action.method}</Button>
+        <Button bsStyle="primary" className="pull-left">{action.method}</Button>
         <h3 id={`${generateID(route+action.name)}`}>
           &nbsp;{action.name}
         </h3>

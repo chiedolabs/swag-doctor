@@ -5,27 +5,22 @@ class Main extends Component{
 
   static propTypes = {
     paths: PropTypes.object,
-    timestamp: PropTypes.number,
-    version: PropTypes.string,
   };
 
   render(){
-    const { paths, timestamp, version } = this.props;
+    const { paths } = this.props;
     let routes = Object.keys(paths);
     let pathsOutput = _.map(routes, (route) => {
       return (
-        <Path key={route} path={paths[route]} route={route} />
+        <div key={route}>
+          <Path path={paths[route]} route={route} />
+          <br/>
+        </div>
       );
     });
-    let date = new Date(timestamp).toString();
     return (
       <div>
         {pathsOutput}
-
-        <hr/>
-        <b>API documentation generated with <a href="https://github.com/chiedolabs/swag-doctor" target="_blank">Swag Doctor</a> v{version} on {date}. Enjoy the swag.</b>
-        <br/>
-        <br/>
       </div>
     );
   }

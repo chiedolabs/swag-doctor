@@ -84,6 +84,15 @@ let createUser = {
           example: ob.pick(user, ['id','name', 'email', 'username', 'books', 'age']) },
       },
     },
+    {
+      name: 'Success Two',
+      status: 201,
+      body: {
+        user: {
+          description: 'The user',
+          example: ob.pick(user, ['id','name', 'email', 'username', 'books', 'age']) },
+      },
+    },
   ],
 };
 
@@ -128,33 +137,38 @@ module.exports = {
     permissionsError,
     notFoundError,
   ],
-  paths: {
+  groups: {
     'Group': {
-      '/users': {
-        actions: [ createUser ],
-        description: `
-          <h4>Stuff</h4>
-          <p>
-          Groovy
-          </p>
-        `,
-      },
-      '/users/:id': {
-        actions: [ getUser, updateUser ],
+      description: 'Group description',
+      paths: {
+        '/users': {
+          actions: [ createUser ],
+          description: `
+            <h4>Stuff</h4>
+            <p>
+            Groovy
+            </p>
+          `,
+        },
+        '/users/:id': {
+          actions: [ getUser, updateUser ],
+        },
       },
     },
     'Other Group': {
-      '/users': {
-        actions: [ createUser ],
-        description: `
-          <h4>Stuff</h4>
-          <p>
-          Groovy
-          </p>
-        `,
-      },
-      '/users/:id': {
-        actions: [ getUser, updateUser ],
+      paths: {
+        '/users': {
+          actions: [ createUser ],
+          description: `
+            <h4>Stuff</h4>
+            <p>
+            Groovy
+            </p>
+          `,
+        },
+        '/users/:id': {
+          actions: [ getUser, updateUser ],
+        },
       },
     },
   },

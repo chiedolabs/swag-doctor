@@ -45,8 +45,7 @@ class Responses extends Component{
       }
 
       return (
-        <div key={response.status}>
-          <h4>{response.name} (status: {response.status})</h4>
+        <Panel key={response.status} header={<span>{response.name} (status: {response.status})</span>}>
           {resFields}
           <Panel header="Example Response" eventKey={response.status} collapsible>
             <pre>
@@ -54,7 +53,7 @@ class Responses extends Component{
             </pre>
           </Panel>
           <br/>
-        </div>
+        </Panel>
       );
     });
     return (

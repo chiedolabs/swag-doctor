@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import Actions from './Actions';
 import { generateID } from '../utils/functions';
+import { Panel } from 'react-bootstrap';
 
 class Path extends Component{
 
@@ -15,7 +16,7 @@ class Path extends Component{
 
     if(path.description) {
       descriptionOutput = (
-        <div dangerouslySetInnerHTML={{__html: path.description}} />
+        <Panel><div dangerouslySetInnerHTML={{__html: path.description}} /></Panel>
       );
     }
 
