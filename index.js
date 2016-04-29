@@ -199,7 +199,7 @@ module.exports.update = (config) => {
  * @param {object} config The config object
  * @returns {object}
  */
-module.exports.delete = (config) => {
+module.exports.destroy = (config) => {
   let name = config.name;
   let moreDescription = config.moreDescription || '';
 
