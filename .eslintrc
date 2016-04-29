@@ -50,7 +50,6 @@
     "comma-dangle": [1, "always-multiline"],
     "radix": 1,
     "no-var": 1,
-    "object-shorthand": [1, "always"],
     "no-unused-vars": [1, {
         "vars": "all",
         "args": "none"

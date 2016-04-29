@@ -1,6 +1,7 @@
 'use strict';
 let ob = require('objob');
 let faker = require('faker');
+let swagdoc = require('../index');
 
 let book = {
   'id': { description: 'The id', example: 'ae3432aeb35563245', type: 'MongoID'},
@@ -129,6 +130,13 @@ let updateUser = {
   responses: [],
 };
 
+let pie = {
+  'id': { description: 'The id', example: 'ae3432aeb35563245'},
+  'name': { description: 'The name of the pie', example: 'Jane Doe'},
+  'cost': { description: 'username', example: 11.88},
+  'private': { description: 'Some private info', example: 'Bruce Wayne made this pie'},
+};
+
 module.exports = {
   name: 'Example API Documentation',
   description: 'This is an example of the documentation you can create with Swag Doctor.',
@@ -138,7 +146,7 @@ module.exports = {
     notFoundError,
   ],
   groups: {
-    'Group': {
+    'Users': {
       description: 'Group description',
       paths: {
         '/users': {
@@ -155,19 +163,12 @@ module.exports = {
         },
       },
     },
-    'Other Group': {
+    'Fried Pies': {
       paths: {
-        '/users': {
-          actions: [ createUser ],
-          description: `
-            <h4>Stuff</h4>
-            <p>
-            Groovy
-            </p>
-          `,
+        '/fried-pies': {
+          actions: [ swagdoc.create({object: pie, name: 'Fried pie', omitIn: ['id'], omitOut: ['private'] }) ],
         },
-        '/users/:id': {
-          actions: [ getUser, updateUser ],
+        '/fried-pies/:id': {
         },
       },
     },

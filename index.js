@@ -1,3 +1,6 @@
+const ob        = require('objob');
+const pluralize = require('pluralize');
+
 module.exports.token = {
   description: 'Authentication token for a user.',
   example: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9',
@@ -86,4 +89,83 @@ module.exports.tokenHeader = {
   key: 'Authorization',
   description: 'This token is used to authenticate a user with a request. If it is not attached, there will be no user attached to the request. Note that the token must be prepended with "Bearer: "',
   example: 'Bearer: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI',
+};
+
+/*******************************************
+ * BASIC RESPONSE GENERATORS
+ *******************************************/
+
+/**
+ * Returns a create response for an object
+ * @param {object} config The config object
+ * @returns {object}
+ */
+module.exports.create = (config) => {
+  let object  = config.object;
+  let name    = config.name;
+  let omitIn  = config.omitIn || [];
+  let omitOut = config.omitOut || [];
+
+  // Making sure that the response body output is nested. Eg. if we're dealing with User Homes,
+  // we'd end up with {user_homes: {...}}
+  let formattedName = name.toLowerCase().split(' ').join('_');
+
+  let bodyResponse = {};
+  bodyResponse[formattedName] = {
+    description: 'The ' + name,
+    example: ob.omit(object, omitOut),
+  };
+
+  let bodyParams = {};
+  bodyParams[formattedName] = {
+    example: ob.omit(object, omitIn),
+  };
+
+  return {
+    name: 'Create ' + name,
+    method: 'POST',
+    description: 'Allows someone to create a ' + name + '.',
+    params: {
+      body: bodyParams,
+    },
+    responses: [
+      {
+        name: 'Success',
+        status: 200,
+        body: bodyResponse,
+      },
+    ],
+  };
+};
+
+/**
+ * Returns an update response for an object
+ * @param {object} object The object to update
+ * @returns {object}
+ */
+module.exports.update = (object) => {
+};
+
+/**
+ * Returns a delete response for an object
+ * @param {object} object The object to delete
+ * @returns {object}
+ */
+module.exports.delete = (object) => {
+};
+
+/**
+ * Returns a response for getting one of the object
+ * @param {object} object The object to get
+ * @returns {object}
+ */
+module.exports.getOne = (object) => {
+};
+
+/**
+ * Returns a response for getting multiple of an object
+ * @param {object} object The object to get multiple of
+ * @returns {object}
+ */
+module.exports.getAll = (object) => {
 };

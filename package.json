@@ -43,6 +43,7 @@
     "lodash": "^4.11.1",
     "ncp": "^2.0.0",
     "objob": "^2.7.12",
+    "pluralize": "^1.2.1",
     "pui-react-back-to-top": "^3.0.0-alpha.3",
     "react-fontawesome": "^0.3.3",
     "type-of": "^2.0.1",
