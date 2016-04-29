@@ -11,7 +11,7 @@ module.exports.id = { description: 'The id', example: () => 1};
 module.exports.deletedResponse = {
   name: 'Success Response',
   status: 200,
-  body: { description: 'The deleted entity', example: {deleted_id: 1}},
+  body: { deleted_id: {description: 'The id of the deleted entity', example: 1}},
 };
 
 /*******************************************
@@ -105,6 +105,7 @@ module.exports.create = (config) => {
   let name    = config.name;
   let omitIn  = config.omitIn || [];
   let omitOut = config.omitOut || [];
+  let moreDescription = config.moreDescription || '';
 
   // Making sure that the response body output is nested. Eg. if we're dealing with User Homes,
   // we'd end up with {user_homes: {...}}
@@ -122,9 +123,9 @@ module.exports.create = (config) => {
   };
 
   return {
-    name: 'Create a new ' + name,
+    name: `Create a new ${name}`,
     method: 'POST',
-    description: 'Allows someone to create a ' + name + '.',
+    description: `Allows someone to create a ${name}. ${moreDescription}`,
     params: {
       body: bodyParams,
     },
@@ -149,6 +150,7 @@ module.exports.update = (config) => {
   let omitIn  = config.omitIn || [];
   let omitOut = config.omitOut || [];
   let urlParams = config.urlParams;
+  let moreDescription = config.moreDescription || '';
 
   // Making sure that the response body output is nested. Eg. if we're dealing with User Homes,
   // we'd end up with {user_homes: {...}}
@@ -172,9 +174,9 @@ module.exports.update = (config) => {
   }
 
   return {
-    name: 'Update a given ' + name,
+    name: `Update a given ${name}`,
     method: 'PUT',
-    description: 'Allows someone to update a given ' + name + '.',
+    description: `Allows someone to update a given ${name}. ${moreDescription}`,
     params: {
       body: bodyParams,
       url: urlParamsObjectified,
@@ -190,11 +192,23 @@ module.exports.update = (config) => {
 };
 
 /**
- * Returns a delete response for an object
- * @param {object} object The object to delete
+ * Returns a delete action for an object
+ * @param {object} config The config object
  * @returns {object}
  */
-module.exports.delete = (object) => {
+module.exports.delete = (config) => {
+  let name = config.name;
+  let moreDescription = config.moreDescription || '';
+
+  return {
+    name: `Delete a given ${name}`,
+    method: 'DELETE',
+    description: `Allows someone to delete a given ${name}. ${moreDescription}`,
+    params: {
+      url: {id: module.exports.id},
+    },
+    responses: [module.exports.deletedResponse],
+  };
 };
 
 /**

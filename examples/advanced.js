@@ -173,6 +173,7 @@ module.exports = {
         '/fried-pies/:id': {
           actions: [
             swagdoc.update({object: pie, name: 'Fried pie', omitIn: ['id'], omitOut: ['private'], urlParams: ['id'] }),
+            swagdoc.delete({name: 'Fried pie'}),
           ],
         },
       },
