@@ -1,3 +1,5 @@
+'use strict';
+
 const ob        = require('objob');
 const pluralize = require('pluralize');
 const _         = require('lodash');
