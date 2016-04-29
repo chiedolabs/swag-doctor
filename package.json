@@ -5,7 +5,6 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && NODE_ENV=production webpack -p --config webpack.config.prod.js && npm run sass",
-    "prepublish": "npm run build",
     "start": "NODE_ENV=development node --harmony server.js",
     "sass-watch": "node-sass --watch ./scss/style.scss ./dist/static/css/style.css --source-map ./dist/static/css/",
     "sass": "node-sass ./scss/style.scss ./dist/static/css/style.css --output-style 'compressed'",
