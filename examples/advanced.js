@@ -166,9 +166,14 @@ module.exports = {
     'Fried Pies': {
       paths: {
         '/fried-pies': {
-          actions: [ swagdoc.create({object: pie, name: 'Fried pie', omitIn: ['id'], omitOut: ['private'] }) ],
+          actions: [
+            swagdoc.create({object: pie, name: 'Fried pie', omitIn: ['id'], omitOut: ['private'] }),
+          ],
         },
         '/fried-pies/:id': {
+          actions: [
+            swagdoc.update({object: pie, name: 'Fried pie', omitIn: ['id'], omitOut: ['private'], urlParams: ['id'] }),
+          ],
         },
       },
     },

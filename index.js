@@ -92,11 +92,11 @@ module.exports.tokenHeader = {
 };
 
 /*******************************************
- * BASIC RESPONSE GENERATORS
+ * BASIC ACTION GENERATORS
  *******************************************/
 
 /**
- * Returns a create response for an object
+ * Returns a create action for an object
  * @param {object} config The config object
  * @returns {object}
  */
@@ -122,7 +122,7 @@ module.exports.create = (config) => {
   };
 
   return {
-    name: 'Create ' + name,
+    name: 'Create a new ' + name,
     method: 'POST',
     description: 'Allows someone to create a ' + name + '.',
     params: {
@@ -139,11 +139,54 @@ module.exports.create = (config) => {
 };
 
 /**
- * Returns an update response for an object
- * @param {object} object The object to update
+ * Returns an update action for an object
+ * @param {object} config The config object
  * @returns {object}
  */
-module.exports.update = (object) => {
+module.exports.update = (config) => {
+  let object  = config.object;
+  let name    = config.name;
+  let omitIn  = config.omitIn || [];
+  let omitOut = config.omitOut || [];
+  let urlParams = config.urlParams;
+
+  // Making sure that the response body output is nested. Eg. if we're dealing with User Homes,
+  // we'd end up with {user_homes: {...}}
+  let formattedName = name.toLowerCase().split(' ').join('_');
+
+  let bodyResponse = {};
+  bodyResponse[formattedName] = {
+    description: 'The ' + name,
+    example: ob.omit(object, omitOut),
+  };
+
+  let bodyParams = {};
+  bodyParams[formattedName] = {
+    example: ob.omit(object, omitIn),
+  };
+
+  let urlParamsObjectified = {};
+
+  for(let urlParam of urlParams) {
+    urlParamsObjectified[urlParam] = object[urlParam];
+  }
+
+  return {
+    name: 'Update a given ' + name,
+    method: 'PUT',
+    description: 'Allows someone to update a given ' + name + '.',
+    params: {
+      body: bodyParams,
+      url: urlParamsObjectified,
+    },
+    responses: [
+      {
+        name: 'Success',
+        status: 200,
+        body: bodyResponse,
+      },
+    ],
+  };
 };
 
 /**
