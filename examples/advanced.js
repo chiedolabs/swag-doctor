@@ -167,15 +167,15 @@ module.exports = {
       paths: {
         '/fried-pies': {
           actions: [
-            swagdoc.create({object: pie, name: 'Fried pie', omitIn: ['id'], omitOut: ['private'] }),
-            swagdoc.getMany({object: pie, name: 'Fried pie', omitOut: ['private']}),
+            swagdoc.create({object: pie, name: 'fried pie', omitIn: ['id'], omitOut: ['private'] }),
+            swagdoc.getMany({object: pie, name: 'fried pie', omitOut: ['private']}),
           ],
         },
         '/fried-pies/:id': {
           actions: [
-            swagdoc.update({object: pie, name: 'Fried pie', omitIn: ['id'], omitOut: ['private'], urlParams: ['id'] }),
-            swagdoc.getOne({object: pie, name: 'Fried pie', omitOut: ['private'], urlParams: ['id'] }),
-            swagdoc.destroy({name: 'Fried pie'}),
+            swagdoc.update({object: pie, name: 'fried pie', omitIn: ['id'], omitOut: ['private'], urlParams: ['id'] }),
+            swagdoc.getOne({object: pie, name: 'fried pie', omitOut: ['private'], urlParams: ['id'] }),
+            swagdoc.destroy({name: 'fried pie'}),
           ],
         },
       },

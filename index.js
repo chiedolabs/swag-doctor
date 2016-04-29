@@ -282,8 +282,8 @@ module.exports.getMany = (config) => {
 
   let bodyResponse = {};
   bodyResponse[formattedName] = {
-    description: 'The ' + name,
-    example: ob.omit(object, omitOut),
+    description: 'The ' + pluralize(name),
+    example: [ob.omit(object, omitOut), ob.omit(object, omitOut)],
   };
 
   let urlParamsObjectified = {};
