@@ -4,6 +4,24 @@ const ob        = require('objob');
 const pluralize = require('pluralize');
 const _         = require('lodash');
 
+const indefinite_article = (word) => {
+  switch (word.toLowerCase().substring(0, 1)) {
+    case 'a':
+      return 'an';
+    case 'e':
+      return 'an';
+    case 'i':
+      return 'an';
+    case 'o':
+      return 'an';
+    case 'u':
+      return 'an';
+    default:
+      return 'a';
+      break;
+  }
+};
+
 module.exports.token = {
   description: 'Authentication token for a user.',
   example: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9',
@@ -182,9 +200,9 @@ module.exports.update = (config) => {
   }
 
   return {
-    name: `Update one ${name}`,
+    name: `Update ${indefinite_article(name)} ${name}`,
     method: 'PUT',
-    description: `Allows someone to update one ${name}. ${moreDescription}`,
+    description: `Allows someone to update ${indefinite_article(name)} ${name}. ${moreDescription}`,
     params: params,
     responses: [
       {
@@ -206,9 +224,9 @@ module.exports.destroy = (config) => {
   let moreDescription = config.moreDescription || '';
 
   return {
-    name: `Delete one ${name}`,
+    name: `Delete ${indefinite_article(name)} ${name}`,
     method: 'DELETE',
-    description: `Allows someone to delete one ${name}. ${moreDescription}`,
+    description: `Allows someone to delete ${indefinite_article(name)} ${name}. ${moreDescription}`,
     params: {
       url: {id: module.exports.id},
     },
@@ -250,9 +268,9 @@ module.exports.getOne = (config) => {
   }
 
   return {
-    name: `Get one ${name}`,
+    name: `Get ${indefinite_article(name)} ${name}`,
     method: 'GET',
-    description: `Allows someone to get one ${name}. ${moreDescription}`,
+    description: `Allows someone to get ${indefinite_article(name)} ${name}. ${moreDescription}`,
     params: params,
     responses: [
       {
