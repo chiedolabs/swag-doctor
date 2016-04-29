@@ -238,4 +238,4 @@ Swagdoc should help you reduce repetition for API documentation and should give 
 See the below for completed code examples.
 
 1. [A complete Advanced example using a js module](./examples/advanced.js) 
-1. <a href="https://github.com/chiedolabs/blog-app-in-many-stacks/blob/master/back-ends/api-resources/rest/src/apidocs.js" target="_blank">An even more complete Advanced example using a js module</a>
+1. I'm being lazy so some extras aren't documented but there are some short cut methods at index.js that you can access by requiring swagdoc in your code base.
