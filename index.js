@@ -1,5 +1,6 @@
 const ob        = require('objob');
 const pluralize = require('pluralize');
+const _         = require('lodash');
 
 module.exports.token = {
   description: 'Authentication token for a user.',
@@ -149,7 +150,7 @@ module.exports.update = (config) => {
   let name    = config.name;
   let omitIn  = config.omitIn || [];
   let omitOut = config.omitOut || [];
-  let urlParams = config.urlParams;
+  let urlParams = config.urlParams || [];
   let moreDescription = config.moreDescription || '';
 
   // Making sure that the response body output is nested. Eg. if we're dealing with User Homes,
@@ -173,14 +174,16 @@ module.exports.update = (config) => {
     urlParamsObjectified[urlParam] = object[urlParam];
   }
 
+  let params = {body: bodyParams};
+  if(_.isEmpty(urlParamsObjectified) === false) {
+    params['url'] = urlParamsObjectified;
+  }
+
   return {
-    name: `Update a given ${name}`,
+    name: `Update one ${name}`,
     method: 'PUT',
-    description: `Allows someone to update a given ${name}. ${moreDescription}`,
-    params: {
-      body: bodyParams,
-      url: urlParamsObjectified,
-    },
+    description: `Allows someone to update one ${name}. ${moreDescription}`,
+    params: params,
     responses: [
       {
         name: 'Success',
@@ -201,9 +204,9 @@ module.exports.delete = (config) => {
   let moreDescription = config.moreDescription || '';
 
   return {
-    name: `Delete a given ${name}`,
+    name: `Delete one ${name}`,
     method: 'DELETE',
-    description: `Allows someone to delete a given ${name}. ${moreDescription}`,
+    description: `Allows someone to delete one ${name}. ${moreDescription}`,
     params: {
       url: {id: module.exports.id},
     },
@@ -212,17 +215,98 @@ module.exports.delete = (config) => {
 };
 
 /**
- * Returns a response for getting one of the object
- * @param {object} object The object to get
+ * Returns an action forreturning one object
+ * @param {object} config The config object
  * @returns {object}
  */
-module.exports.getOne = (object) => {
+module.exports.getOne = (config) => {
+  let object  = config.object;
+  let name    = config.name;
+  let omitOut = config.omitOut || [];
+  let urlParams = config.urlParams || [];
+  let moreDescription = config.moreDescription || '';
+
+  // Making sure that the response body output is nested. Eg. if we're dealing with User Homes,
+  // we'd end up with {user_homes: {...}}
+  let formattedName = name.toLowerCase().split(' ').join('_');
+
+  let bodyResponse = {};
+  bodyResponse[formattedName] = {
+    description: 'The ' + name,
+    example: ob.omit(object, omitOut),
+  };
+
+  let urlParamsObjectified = {};
+
+  for(let urlParam of urlParams) {
+    urlParamsObjectified[urlParam] = object[urlParam];
+  }
+
+  let params = {};
+  if(_.isEmpty(urlParamsObjectified) === false) {
+    params['url'] = urlParamsObjectified;
+  }
+
+  return {
+    name: `Get one ${name}`,
+    method: 'GET',
+    description: `Allows someone to get one ${name}. ${moreDescription}`,
+    params: params,
+    responses: [
+      {
+        name: 'Success',
+        status: 200,
+        body: bodyResponse,
+      },
+    ],
+  };
 };
 
 /**
- * Returns a response for getting multiple of an object
- * @param {object} object The object to get multiple of
+ * Returns an action for returning many objects
+ * @param {object} config The config object
  * @returns {object}
  */
-module.exports.getAll = (object) => {
+module.exports.getMany = (config) => {
+  let object  = config.object;
+  let name    = config.name;
+  let omitOut = config.omitOut || [];
+  let urlParams = config.urlParams || [];
+  let moreDescription = config.moreDescription || '';
+
+  // Making sure that the response body output is nested. Eg. if we're dealing with User Homes,
+  // we'd end up with {user_homes: {...}}
+  let formattedName = pluralize(name).toLowerCase().split(' ').join('_');
+
+  let bodyResponse = {};
+  bodyResponse[formattedName] = {
+    description: 'The ' + name,
+    example: ob.omit(object, omitOut),
+  };
+
+  let urlParamsObjectified = {};
+
+  for(let urlParam of urlParams) {
+    urlParamsObjectified[urlParam] = object[urlParam];
+  }
+
+  let params = {};
+  if(_.isEmpty(urlParamsObjectified) === false) {
+    params['url'] = urlParamsObjectified;
+  }
+
+  return {
+    name: `Get many ${pluralize(name)}`,
+    method: 'GET',
+    description: `Allows someone to get many ${pluralize(name)}. ${moreDescription}`,
+    params: params,
+    responses: [
+      {
+        name: 'Success',
+        status: 200,
+        body: bodyResponse,
+      },
+    ],
+  };
 };
+
