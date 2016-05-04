@@ -2,7 +2,6 @@ import React, {Component, PropTypes} from 'react';
 import { modelToJSON } from '../utils/functions';
 import { Panel } from 'react-bootstrap';
 import Fields from './Fields';
-import jsonString from 'json-string';
 import * as _ from 'lodash';
 import ob from 'objob';
 
@@ -18,7 +17,7 @@ class Responses extends Component{
       let parsedResBody;
 
       if(_.isObject(resBody)){
-        parsedResBody = jsonString(resBody);
+        parsedResBody = JSON.stringify(resBody, null, 2);
       } else {
         parsedResBody = resBody;
       }
