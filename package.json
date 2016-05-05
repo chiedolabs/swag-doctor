@@ -8,7 +8,9 @@
     "start": "NODE_ENV=development node --harmony server.js",
     "sass-watch": "node-sass --watch ./scss/style.scss ./dist/static/css/style.css --source-map ./dist/static/css/",
     "sass": "node-sass ./scss/style.scss ./dist/static/css/style.css --output-style 'compressed'",
-    "test-update-docs": "NODE_ENV=production node --harmony swag-doctor.js -i examples/advanced.js -o tmp/docs"
+    "test-update-docs": "NODE_ENV=production node --harmony swag-doctor.js -i examples/advanced.js -o tmp/docs",
+    "test-update-docs-multi": "NODE_ENV=production node --harmony swag-doctor.js -i examples/advanced.js -o tmp/docs --multi",
+    "test-update-docs-single": "NODE_ENV=production node --harmony swag-doctor.js -i examples/advanced.js -o tmp/docs --group"
   },
   "keywords": [
     "Node",

@@ -52,64 +52,93 @@ class App extends Component{
 
     // First get the keys for all the groups which is what is at the top level
     // of the paths object
-    let groups = Object.keys(data.groups);
-    // Using those groups, get the paths for each group
-    let sideNavs = groups.map((group) => {
-      let sideNav;
-      if(data.groups[group].paths){
-        sideNav = <SideNav paths={data.groups[group].paths} toggleSideNav={this.handleToggle} />;
-      }
-      return (
-        <Panel header={group} key={groups.indexOf(group)} eventKey={groups.indexOf(group)} bsStyle="primary">
-          {sideNav}
+    let sideNavs;
+    let groups;
+    let mainContents;
+    if(data.groups) {
+      groups = Object.keys(data.groups);
+
+      // Using those groups, get the paths for each group
+      sideNavs = groups.map((group) => {
+        // Expand by default if only one group is selected
+        // Not sure why this works but it does
+        let eventKey;
+        if(groups.length > 1) {
+          eventKey = groups.indexOf(group);
+        }
+
+        let sideNav;
+        if(data.groups[group].paths){
+          sideNav = <SideNav paths={data.groups[group].paths} toggleSideNav={this.handleToggle} />;
+        }
+        return (
+          <Panel header={group} key={groups.indexOf(group)} eventKey={eventKey} bsStyle="primary" expanded={true}>
+            {sideNav}
+          </Panel>
+        );
+      });
+
+      mainContents = groups.map((group) => {
+
+        let descriptionOutput;
+        if(data.groups[group].description) {
+          descriptionOutput = (
+            <Panel><div dangerouslySetInnerHTML={{__html: data.groups[group].description}} /></Panel>
+          );
+        }
+        let pathsOutput;
+
+        if(data.groups[group].paths) {
+          pathsOutput = <Main paths={data.groups[group].paths}/>;
+        }
+
+        return (
+          <div key={groups.indexOf(group)}>
+            <Panel header={group} bsStyle="primary">
+              {descriptionOutput}
+              {pathsOutput}
+            </Panel>
+          </div>
+        );
+      });
+    }
+
+    let globalResponses;
+
+    if(data.globalResponses) {
+      globalResponses = (
+        <Panel id="global-responses" header="Global Responses" bsStyle="primary">
+          <Responses responses={data.globalResponses} />
         </Panel>
       );
-    });
+    }
+    let sideNavCol;
 
-    let mainContents = groups.map((group) => {
-
-      let descriptionOutput;
-      if(data.groups[group].description) {
-        descriptionOutput = (
-          <Panel><div dangerouslySetInnerHTML={{__html: data.groups[group].description}} /></Panel>
-        );
-      }
-      let pathsOutput;
-
-      if(data.groups[group].paths) {
-        pathsOutput = <Main paths={data.groups[group].paths}/>;
-      }
-
-      return (
-        <div key={groups.indexOf(group)}>
-          <Panel header={group} bsStyle="primary">
-            {descriptionOutput}
-            {pathsOutput}
-          </Panel>
-        </div>
+    if(sideNavs) {
+      sideNavCol = (
+        <Col xs={3} md={3} className={sideNavClass}>
+          <h3><a href="index.html">SWAG DOCS (beta)</a></h3>
+          <br/>
+          <Accordion className="side-nav-accordion" bsStyle="primary">
+            {sideNavs}
+          </Accordion>
+        </Col>
       );
-    });
-
+    }
 
     return (
       <div>
         <NavToggle toggleSideNav={this.handleToggle} hideSideNav={this.state.hideSideNav} />
         <Grid className="pull-left">
           <Row className="main">
-            <Col xs={3} md={3} className={sideNavClass}>
-              <Accordion className="side-nav-accordion" bsStyle="primary">
-                {sideNavs}
-              </Accordion>
-            </Col>
+            {sideNavCol}
             <Col xs={9} md={9} className="viewer">
               <h1>{data.name}</h1>
               <div>
                 {descriptionOutput}
               </div>
               <br/>
-              <Panel id="global-responses" header="Global Responses" bsStyle="primary">
-                <Responses responses={data.globalResponses} />
-              </Panel>
+              {globalResponses}
               {mainContents}
 
               <hr/>
