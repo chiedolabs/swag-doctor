@@ -7,7 +7,6 @@ let _      = require('lodash');
 let fs     = require('fs');
 let ncp    = require('ncp').ncp;
 let ejs    = require('ejs');
-let ob     = require('objob');
 let chalk = require('chalk');
 let pjson = require('./package.json');
 // Get the execution directory
@@ -35,14 +34,6 @@ if(argv.i && argv.o) {
   let inputFile = _.trimStart(argv.i, './');
 
   let data         = require(`${cwd}/${inputFile}`);
-  // We need to make sure all the functions are evaluated
-  data = ob.mapValues(data, (x) => {
-    if(typeof x === 'function') {
-      return x();
-    } else {
-      return x;
-    }
-  });
 
   data.timestamp = Date.now();
   data.version=pjson.version;
@@ -68,7 +59,7 @@ if(argv.i && argv.o) {
       let links = '';
       // Make individual docs pages
       for(let key in data.groups) {
-        let onePageData = ob.clone(data);
+        let onePageData = Object.assign({}, data);
         onePageData.groups = {};
         onePageData.groups[key] = data.groups[key];
 
@@ -85,7 +76,7 @@ if(argv.i && argv.o) {
       }, 'index');
     } else if(argv.group) {
     // Just do one group as opposed to everything
-      let onePageData = ob.clone(data);
+      let onePageData = Object.assign({}, data);
       onePageData.groups = {};
       onePageData.groups[argv.group] = data.groups[argv.group];
 
