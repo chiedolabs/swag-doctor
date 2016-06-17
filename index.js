@@ -294,6 +294,9 @@ module.exports.getMany = (config) => {
   let urlParams = config.urlParams || [];
   let moreDescription = config.moreDescription || '';
 
+  // allow the user to override the default description
+  let description = config.description || `Allows someone to get many ${pluralize(name)}. ${moreDescription}`;
+
   // Making sure that the response body output is nested. Eg. if we're dealing with User Homes,
   // we'd end up with {user_homes: {...}}
   let formattedName = pluralize(name).toLowerCase().split(' ').join('_');
@@ -318,7 +321,7 @@ module.exports.getMany = (config) => {
   return {
     name: `Get many ${pluralize(name)}`,
     method: 'GET',
-    description: `Allows someone to get many ${pluralize(name)}. ${moreDescription}`,
+    description: description,
     params: params,
     responses: [
       {
