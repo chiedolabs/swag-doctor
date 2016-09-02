@@ -188,11 +188,7 @@ module.exports.update = (config) => {
     example: ob.omit(object, omitIn),
   };
 
-  let urlParamsObjectified = {};
-
-  for(let urlParam of urlParams) {
-    urlParamsObjectified[urlParam] = object[urlParam];
-  }
+  let urlParamsObjectified = getUrlParamsObjectified(urlParams, object);
 
   let params = {body: bodyParams};
   if(_.isEmpty(urlParamsObjectified) === false) {
@@ -256,11 +252,7 @@ module.exports.getOne = (config) => {
     example: ob.omit(object, omitOut),
   };
 
-  let urlParamsObjectified = {};
-
-  for(let urlParam of urlParams) {
-    urlParamsObjectified[urlParam] = object[urlParam];
-  }
+  let urlParamsObjectified = getUrlParamsObjectified(urlParams, object);
 
   let params = {};
   if(_.isEmpty(urlParamsObjectified) === false) {
@@ -307,11 +299,7 @@ module.exports.getMany = (config) => {
     example: [ob.omit(object, omitOut), ob.omit(object, omitOut)],
   };
 
-  let urlParamsObjectified = {};
-
-  for(let urlParam of urlParams) {
-    urlParamsObjectified[urlParam] = object[urlParam];
-  }
+  let urlParamsObjectified = getUrlParamsObjectified(urlParams, object);
 
   let params = {};
   if(_.isEmpty(urlParamsObjectified) === false) {
@@ -332,4 +320,25 @@ module.exports.getMany = (config) => {
     ],
   };
 };
+
+
+/**
+ * Get url params in object form in following format: { field: 'the_param', description: 'the description' }
+ * @param {array} urlParams
+ * @param {object} object
+ * @returns {array}
+ */
+function getUrlParamsObjectified(urlParams, object) {
+  let urlParamsObjectified = {};
+  // default: get url param field and description as matched to db column names
+  // allow user to specify url params that don't match perfectly with db columns
+  for(let urlParam of urlParams) {
+    if (urlParam !== null && typeof urlParam === 'object' && urlParam.field) {
+      urlParamsObjectified[urlParam.field] = urlParam;
+    } else {
+      urlParamsObjectified[urlParam] = object[urlParam];
+    }
+  }
+  return urlParamsObjectified;
+}
 
